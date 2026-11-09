@@ -3,3 +3,143 @@
    Reset, estilos de elementos HTML,
    foco visible y clases utilitarias de accesibilidad.
    ========================================================================== */
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--fuente-base);
+  font-size: var(--texto-base);
+  font-weight: var(--peso-regular);
+  line-height: var(--interlineado-base);
+  color: var(--color-texto);
+  background-color: var(--color-fondo);
+  overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-texto-titulo);
+  font-weight: var(--peso-negrita);
+  line-height: var(--interlineado-titulos);
+}
+
+h1 {
+  font-size: var(--texto-3xl);
+}
+
+h2 {
+  font-size: var(--texto-2xl);
+}
+
+h3 {
+  font-size: var(--texto-xl);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--color-primario);
+  text-underline-offset: 0.2em;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  min-height: var(--tactil-min);
+  cursor: pointer;
+}
+
+button:disabled,
+input:disabled {
+  cursor: not-allowed;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-texto-placeholder);
+}
+
+table {
+  border-collapse: collapse;
+}
+
+fieldset {
+  min-width: 0;
+}
+
+:focus-visible {
+  outline: var(--grosor-foco) solid var(--color-foco);
+  outline-offset: var(--separacion-foco);
+}
+
+header :focus-visible {
+  outline-color: var(--color-foco-sobre-oscuro);
+}
+
+.saltar-contenido {
+  position: fixed;
+  top: -10rem;
+  left: var(--espacio-4);
+  z-index: var(--z-modal);
+  padding: var(--espacio-3) var(--espacio-4);
+  color: var(--color-texto-inverso);
+  background-color: var(--color-primario);
+  border-radius: var(--radio-md);
+  font-size: var(--texto-base);
+  font-weight: var(--peso-seminegrita);
+  text-decoration: none;
+}
+
+.saltar-contenido:focus,
+.saltar-contenido:focus-visible {
+  top: var(--espacio-4);
+  outline-color: var(--color-foco);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
