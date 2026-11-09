@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de vacantes y postulaciones – AMAC | Bolsa De Trabajo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="empresa-vacantes.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-header__brand" href="index.html">
+        <img class="site-header__logo" src="assets/amac-logo.png" alt="AMAC | Bolsa De Trabajo" width="471" height="75">
+      </a>
+
+      <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú de navegación">
+        <span class="site-header__toggle-bar"></span>
+        <span class="site-header__toggle-bar"></span>
+        <span class="site-header__toggle-bar"></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+        <ul class="site-nav__list">
+          <li class="site-nav__item">
+            <a class="site-nav__link" href="index.html">
+              <img class="site-nav__icon" alt="Ícono de búsqueda" width="20" height="20"
+                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fafafa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E">
+              Buscar Empleos
+            </a>
+          </li>
+          <li class="site-nav__item">
+            <button class="site-nav__link" type="button">
+              Registro
+              <img class="site-nav__icon" alt="Flecha desplegable" width="20" height="20"
+                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fafafa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E">
+            </button>
+          </li>
+          <li class="site-nav__item">
+            <a class="site-nav__link" href="login.html">
+              Iniciar Sesión
+              <img class="site-nav__icon site-nav__icon--user" alt="Ícono de usuario" width="24" height="24"
+                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fafafa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E">
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="page__content">
+      <section class="page-intro" aria-labelledby="page-title">
+        <h1 class="page-intro__title" id="page-title">Panel de vacantes y postulaciones</h1>
+        <p class="page-intro__subtitle">Gestiona tus vacantes activas, revisa candidatos y toma decisiones de contratación desde un solo lugar.</p>
+      </section>
+
+      <section class="stats" aria-label="Resumen del panel">
+        <article class="stat">
+          <p class="stat__value">2</p>
+          <p class="stat__label">Vacantes activas</p>
+        </article>
+        <article class="stat stat--wide">
+          <p class="stat__value stat__value--accent">1</p>
+          <p class="stat__label">Postulaciones pendientes</p>
+        </article>
+        <article class="stat stat--medium">
+          <p class="stat__value stat__value--success">1</p>
+          <p class="stat__label">Entrevistas agendadas</p>
+        </article>
+        <article class="stat">
+          <p class="stat__value stat__value--danger">1</p>
+          <p class="stat__label">No seleccionados</p>
+        </article>
+      </section>
+
+      <!-- Vacantes -->
+      <section class="panel panel--vacancies" aria-label="Vacantes publicadas">
+        <table class="data-table">
+          <colgroup class="data-table__colgroup">
+            <col class="data-table__col--1">
+            <col class="data-table__col--2">
+            <col class="data-table__col--3">
+            <col class="data-table__col--4">
+            <col class="data-table__col--5">
+          </colgroup>
+          <thead class="data-table__head">
+            <tr>
+              <th class="data-table__th" scope="col">Vacante</th>
+              <th class="data-table__th" scope="col">Ubicación</th>
+              <th class="data-table__th" scope="col">Publicada</th>
+              <th class="data-table__th" scope="col">Estado</th>
+              <th class="data-table__th data-table__th--end" scope="col">Acción</th>
+            </tr>
+          </thead>
+          <tbody class="data-table__body">
+            <tr class="data-table__row">
+              <td class="data-table__cell data-table__cell--primary">
+                <div class="data-table__primary">
+                  <span class="data-table__title">Cajero / Atención en Mostrador</span>
+                  <span class="tag">Tiempo completo</span>
+                </div>
+              </td>
+              <td class="data-table__cell data-table__cell--lh26" data-label="Ubicación">Guadalupe</td>
+              <td class="data-table__cell data-table__cell--lh24" data-label="Publicada"><time datetime="2026-08-02">02 Ago 2026</time></td>
+              <td class="data-table__cell data-table__cell--status"><span class="status status--warning">Abierta</span></td>
+              <td class="data-table__cell data-table__cell--action"><a class="btn" href="vacante.html">Ver detalle</a></td>
+            </tr>
+            <tr class="data-table__row data-table__row--alt">
+              <td class="data-table__cell data-table__cell--primary">
+                <div class="data-table__primary">
+                  <span class="data-table__title">Asesor de Atención al Cliente</span>
+                  <span class="tag">Tiempo completo</span>
+                </div>
+              </td>
+              <td class="data-table__cell data-table__cell--lh26" data-label="Ubicación">Monterrey</td>
+              <td class="data-table__cell data-table__cell--lh24" data-label="Publicada"><time datetime="2026-09-30">30 Sep 2026</time></td>
+              <td class="data-table__cell data-table__cell--status"><span class="status status--success">Entrevistas</span></td>
+              <td class="data-table__cell data-table__cell--action"><a class="btn" href="#">Ver detalle</a></td>
+            </tr>
+            <tr class="data-table__row">
+              <td class="data-table__cell data-table__cell--primary">
+                <div class="data-table__primary">
+                  <span class="data-table__title">Guardia de Seguridad</span>
+                  <span class="tag">Tiempo completo</span>
+                </div>
+              </td>
+              <td class="data-table__cell data-table__cell--lh26" data-label="Ubicación">Apodaca</td>
+              <td class="data-table__cell data-table__cell--lh24" data-label="Publicada"><time datetime="2026-05-08">08 May 2026</time></td>
+              <td class="data-table__cell data-table__cell--status"><span class="status status--danger">Cerrada</span></td>
+              <td class="data-table__cell data-table__cell--action"><span class="btn btn--disabled" aria-disabled="true">Ver detalle</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Candidatos -->
+      <section class="panel panel--candidates" aria-label="Candidatos postulados">
+        <table class="data-table data-table--candidates">
+          <colgroup class="data-table__colgroup">
+            <col class="data-table__col--1">
+            <col class="data-table__col--2">
+            <col class="data-table__col--3">
+            <col class="data-table__col--4">
+            <col class="data-table__col--5">
+          </colgroup>
+          <thead class="data-table__head data-table__head--light">
+            <tr>
+              <th class="data-table__th" scope="col">Candidato</th>
+              <th class="data-table__th" scope="col">Vacante</th>
+              <th class="data-table__th" scope="col">Fecha</th>
+              <th class="data-table__th data-table__th--offset" scope="col">Estado</th>
+              <th class="data-table__th" scope="col">Acción</th>
+            </tr>
+          </thead>
+          <tbody class="data-table__body">
+            <tr class="data-table__row data-table__row--alt">
+              <td class="data-table__cell data-table__cell--primary">
+                <div class="data-table__primary">
+                  <span class="data-table__title data-table__title--person">Ana Torres</span>
+                  <span class="data-table__meta">5 años de experiencia en atención al cliente</span>
+                </div>
+              </td>
+              <td class="data-table__cell" data-label="Vacante">Cajero / Atención en Mostrador</td>
+              <td class="data-table__cell" data-label="Fecha"><time datetime="2026-11-02">02 Nov 2026</time></td>
+              <td class="data-table__cell data-table__cell--status"><span class="status status--warning">En revisión</span></td>
+              <td class="data-table__cell data-table__cell--action"><a class="btn" href="#">Ver</a></td>
+            </tr>
+            <tr class="data-table__row">
+              <td class="data-table__cell data-table__cell--primary">
+                <div class="data-table__primary">
+                  <span class="data-table__title data-table__title--person">Luis Ramírez</span>
+                  <span class="data-table__meta">8 años en consultoría y ventas inmobiliarias</span>
+                </div>
+              </td>
+              <td class="data-table__cell" data-label="Vacante">Asesor de Atención al Cliente</td>
+              <td class="data-table__cell" data-label="Fecha"><time datetime="2026-10-27">27 Oct 2026</time></td>
+              <td class="data-table__cell data-table__cell--status"><span class="status status--danger">No seleccionado</span></td>
+              <td class="data-table__cell data-table__cell--action"><a class="btn" href="#">Ver</a></td>
+            </tr>
+            <tr class="data-table__row">
+              <td class="data-table__cell data-table__cell--primary">
+                <div class="data-table__primary">
+                  <span class="data-table__title data-table__title--person">Jorge Romero</span>
+                  <span class="data-table__meta">3 años en logística y control de inventarios</span>
+                </div>
+              </td>
+              <td class="data-table__cell" data-label="Vacante">Auxiliar de Almacén e Inventarios</td>
+              <td class="data-table__cell" data-label="Fecha"><time datetime="2026-10-15">15 Oct 2026</time></td>
+              <td class="data-table__cell data-table__cell--status"><span class="status status--success">Entrevista agendada</span></td>
+              <td class="data-table__cell data-table__cell--action"><a class="btn" href="#">Ver</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      var toggle = document.querySelector('.site-header__toggle');
+      var nav = document.getElementById('site-nav');
+      var mq = window.matchMedia('(max-width: 1024px)');
+
+      function setOpen(open) {
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
+        nav.classList.toggle('site-nav--open', open);
+      }
+
+      toggle.addEventListener('click', function () {
+        setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+          setOpen(false);
+          toggle.focus();
+        }
+      });
+
+      mq.addEventListener('change', function (e) {
+        if (!e.matches) setOpen(false);
+      });
+    })();
+  </script>
+</body>
+</html>
