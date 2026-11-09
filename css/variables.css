@@ -1,0 +1,206 @@
+/* ==========================================================================
+   AMAC | Bolsa de Trabajo - variables.css
+   Design tokens del prototipo de Figma, migrados desde styles.css.
+
+   Reglas de este archivo:
+   - Solo declara variables; no estiliza ningún elemento.
+
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------------
+     1. COLORES
+     ------------------------------------------------------------------------ */
+
+  /* Marca y acciones */
+  --color-primario: #003366;             /* header, títulos, botones de consulta. Blanco encima 12.6:1 */
+  --color-primario-oscuro: #002147;      /* hover / activo del primario */
+  --color-accion: #C2410C;               /* Buscar, Postularme, Llamar, Registrarme. Blanco encima 5.2:1 */
+  --color-accion-oscuro: #9A3412;        /* hover / activo de la acción */
+  --color-accion-suave: #FF6B52;         /* viñetas de requisitos. SOLO decorativo, nunca texto */
+  --color-exito: #166534;                /* Aceptar candidatura, "Entrevista". Blanco encima 7.1:1 */
+  --color-peligro: #991B1B;              /* Rechazar, "No seleccionado". Blanco encima 8.3:1 */
+
+  /* Fondos y superficies */
+  --color-fondo: #F4F1EA;                /* blanco hueso: fondo de todas las páginas */
+  --color-superficie: #FFFFFF;           /* tarjetas, formularios, tablas */
+  --color-superficie-alterna: #FAFAFA;   /* filas alternas de las tablas */
+  --color-panel: #EAF3FF;                /* panel del buscador y detalle de vacante */
+  --color-panel-info: #DCEBFF;           /* recuadro de ubicación / horario / salario */
+  --color-campo-select: #BFD7FF;         /* fondo de los <select> de filtros */
+  --color-subencabezado: #EAF0F6;        /* encabezado claro de la tabla de candidatos */
+  --color-aviso: #F8F9FA;                /* caja de aceptar términos */
+  --color-deshabilitado: #CED1D7;        /* botón deshabilitado (antes rgba(156,163,175,.5)) */
+
+  /* Texto */
+  --color-texto-titulo: #111827;         /* 14.7:1 sobre panel info */
+  --color-texto-fuerte: #1C2033;         /* títulos de tarjeta, labels, sueldo */
+  --color-texto: #334155;                /* texto normal. 9.2:1 sobre fondo hueso */
+  --color-texto-suave: #4A5565;          /* subtítulos y empresa. 6.7:1 sobre fondo hueso */
+  --color-texto-celda: #4B5563;          /* celdas de tabla. 7.2:1 sobre fila alterna */
+  --color-texto-inverso: #FAFAFA;        /* texto sobre azul marino o naranja */
+  --color-texto-placeholder: #6B7280;    /* CAMBIO vs Figma: #94A3B8 daba 2.6:1. Ahora 4.8:1 */
+
+  /* Bordes */
+  --color-borde: #E2E8F0;                /* bordes decorativos de tarjetas y filas */
+  --color-borde-campo: #64748B;          /* CAMBIO vs Figma: #CBD5E1 daba 1.5:1. Un campo
+                                            debe distinguirse con ≥ 3:1 (WCAG 1.4.11). Ahora 4.8:1 */
+  --color-borde-suave: #BFD7FF;          /* separadores dentro del panel azul */
+  --color-borde-oscuro: rgb(250 250 250 / 0.15); /* separadores del menú móvil */
+
+  /* Etiquetas de estatus (una sola paleta para candidato y empresa). */
+  --estatus-revision-texto: #9A3412;     /* "En revisión", "Abierta", etiqueta "Tiempo completo" */
+  --estatus-revision-fondo: #FFEDD5;
+  --estatus-exito-texto: #166534;        /* "Entrevista agendada", "Entrevistas" */
+  --estatus-exito-fondo: #DCFCE7;
+  --estatus-error-texto: #991B1B;        /* "No seleccionado", "Cerrada" */
+  --estatus-error-fondo: #FEE2E2;
+
+  /* Foco del teclado */
+  --color-foco: #C2410C;                 /* sobre fondos claros: 4.6:1 en panel, 3.6:1 en select */
+  --color-foco-sobre-oscuro: #FDBA74;    /* sobre el header azul marino: 7.5:1 */
+
+  /* ------------------------------------------------------------------------
+     2. TIPOGRAFÍA
+     ------------------------------------------------------------------------ */
+  --fuente-base: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --texto-sm: 1rem;          /* 16 px · etiquetas de filtros (Figma), ayudas cortas, pie */
+  --texto-base: 1.125rem;    /* 18 px · párrafos, campos, botones, celdas */
+  --texto-md: 1.125rem;      /* 18 → 20 px · botones grandes (Postularme, Completar registro) */
+  --texto-lg: 1.125rem;      /* 18 → 22 px · nombre de empresa en el detalle */
+  --texto-xl: 1.25rem;       /* 20 → 24 px · títulos de tarjeta y menú principal */
+  --texto-2xl: 1.375rem;     /* 22 → 26 px · títulos de sección (h2) */
+  --texto-3xl: 1.625rem;     /* 26 → 32 px · h1 y cifras de las estadísticas */
+  --texto-4xl: 1.75rem;      /* 28 → 36 px · h1 del detalle de vacante */
+
+  --peso-regular: 400;
+  --peso-medio: 500;
+  --peso-seminegrita: 600;
+  --peso-negrita: 700;
+
+  /* Interlineados sin unidad: escalan con el tamaño del texto */
+  --interlineado-titulos: 1.25;
+  --interlineado-compacto: 1.35;   /* botones, etiquetas, celdas */
+  --interlineado-base: 1.5;        /* párrafos (WCAG 1.4.12 pide ≥ 1.5) */
+  --interlineado-amplio: 1.65;     /* textos largos del detalle */
+
+  /* ------------------------------------------------------------------------
+     3. ESPACIADOS
+     ------------------------------------------------------------------------ */
+  --espacio-1: 0.25rem;    /*  4 px */
+  --espacio-2: 0.5rem;     /*  8 px */
+  --espacio-3: 0.75rem;    /* 12 px */
+  --espacio-4: 1rem;       /* 16 px */
+  --espacio-5: 1.25rem;    /* 20 px */
+  --espacio-6: 1.5rem;     /* 24 px */
+  --espacio-7: 1.75rem;    /* 28 px */
+  --espacio-8: 2rem;       /* 32 px */
+  --espacio-10: 2.5rem;    /* 40 px */
+  --espacio-12: 3rem;      /* 48 px */
+  --espacio-16: 4rem;      /* 64 px */
+  --espacio-24: 6rem;      /* 96 px */
+
+  /* ------------------------------------------------------------------------
+     4. LAYOUT
+     ------------------------------------------------------------------------ */
+  --ancho-pagina: 90rem;          /* 1440 px */
+  --ancho-contenido: 75.625rem;   /* 1210 px */
+  --ancho-formulario: 37.5rem;    /* 600 px  */
+  --margen-pagina: 1rem;          /* margen lateral */
+
+  --alto-encabezado: 5rem;        /* 80 px */
+  --ancho-logo: 12.5rem;          /* 200 px */
+
+  /* ------------------------------------------------------------------------
+     5. ÁREAS TÁCTILES Y TAMAÑOS DE CONTROLES
+     ------------------------------------------------------------------------ */
+  --tactil-min: 2.75rem;          /* 44 px */
+  --alto-boton: 3rem;             /* 48 px */
+  --alto-campo: 3.25rem;          /* 52 px */
+  --alto-textarea: 9.625rem;      /* 154 px */
+  --tamano-casilla: 1.5rem;       /* 24 px */
+  --tamano-icono: 1.25rem;        /* 20 px */
+  --tamano-icono-lg: 1.5rem;      /* 24 px */
+  --tamano-fab: 4rem;             /* 64 px */
+  --separacion-tactil: 0.5rem;    /* espacio mínimo entre dos elementos tocables */
+
+  /* ------------------------------------------------------------------------
+     6. FORMA
+     ------------------------------------------------------------------------ */
+  --radio-sm: 0.25rem;            /*  4 px */
+  --radio-md: 0.5rem;             /*  8 px */
+  --radio-lg: 0.75rem;            /* 12 px */
+  --radio-pildora: 999px;         /* etiquetas de estatus */
+  --radio-circulo: 50%;           /* botón flotante */
+
+  --grosor-borde: 1px;            
+  --grosor-foco: 3px;
+  --separacion-foco: 2px;
+
+  /* ------------------------------------------------------------------------
+     7. SOMBRAS 
+     ------------------------------------------------------------------------ */
+  --sombra-tarjeta:
+    0 4px 2px rgb(0 0 0 / 0.25),
+    0 1px 1.5px rgb(0 0 0 / 0.1),
+    0 1px 1px rgb(0 0 0 / 0.1);
+  --sombra-estadistica: 0 1px 1.5px rgb(0 0 0 / 0.1);
+  --sombra-tabla:
+    0 4px 4px rgb(0 0 0 / 0.25),
+    0 1px 3px rgb(0 0 0 / 0.1),
+    0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --sombra-fab: 0 4px 4px rgb(0 0 0 / 0.1), 0 2px 8px rgb(0 0 0 / 0.2);
+  --sombra-boton-primario: 0 4px 6px rgb(0 51 102 / 0.25);
+  --sombra-boton-accion: 0 4px 6px rgb(255 107 82 / 0.25);
+
+  /* ------------------------------------------------------------------------
+     8. MOVIMIENTO Y CAPAS
+     ------------------------------------------------------------------------ */
+  --transicion: 150ms ease-in-out;
+  --transicion-menu: 300ms ease;
+
+  --z-encabezado: 10;
+  --z-menu: 20;
+  --z-fab: 30;
+  --z-modal: 40;        
+}
+
+/* --------------------------------------------------------------------------
+   Tablet: 768 px en adelante
+   -------------------------------------------------------------------------- */
+@media (min-width: 48em) {
+  :root {
+    --texto-md: 1.25rem;       /* 20 px */
+    --texto-lg: 1.375rem;      /* 22 px */
+    --texto-xl: 1.5rem;        /* 24 px */
+    --texto-2xl: 1.625rem;     /* 26 px */
+    --texto-3xl: 2rem;         /* 32 px */
+    --texto-4xl: 2.25rem;      /* 36 px */
+
+    --margen-pagina: 1.5rem;   /* 24 px */
+    --alto-encabezado: 6rem;   /* 96 px */
+    --ancho-logo: 23.5625rem;  /* 377 px */
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Escritorio: 1024 px en adelante
+   -------------------------------------------------------------------------- */
+@media (min-width: 64em) {
+  :root {
+    --margen-pagina: 2rem;              /* 32 px */
+    --alto-encabezado: 7.5625rem;       /* 121 px */
+    --ancho-logo: 29.4375rem;           /* 471 px */
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Preferencias del sistema operativo
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transicion: 0ms;
+    --transicion-menu: 0ms;
+  }
+}
