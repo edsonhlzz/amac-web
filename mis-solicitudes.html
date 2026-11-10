@@ -90,6 +90,17 @@
         </div>
       </section>
 
+      <section class="applications" aria-label="Listado de solicitudes">
+        <table class="applications__table">
+          <caption class="applications__caption">Historial de solicitudes</caption>
+          <colgroup class="applications__colgroup">
+            <col class="applications__col applications__col--puesto">
+            <col class="applications__col applications__col--empresa">
+            <col class="applications__col applications__col--fecha">
+            <col class="applications__col applications__col--estado">
+            <col class="applications__col applications__col--accion">
+          </colgroup>
+          <thead class="applications__head">
       <section class="panel" aria-label="Listado de solicitudes">
         <table class="data-table">
           <thead class="data-table__head">
@@ -101,6 +112,48 @@
               <th class="data-table__th data-table__th--end" scope="col">Acción</th>
             </tr>
           </thead>
+          <tbody class="applications__body">
+            <tr class="applications__row">
+              <td class="applications__cell applications__cell--puesto" data-label="Puesto">
+                <div class="applications__job">
+                  <span class="applications__job-title">Cajero / Atención en Mostrador</span>
+                  <span class="tag">Tiempo completo</span>
+                </div>
+              </td>
+              <td class="applications__cell applications__cell--empresa" data-label="Empresa">Cadena Comercial OXXO</td>
+              <td class="applications__cell applications__cell--fecha" data-label="Fecha de postulación"><time datetime="2026-11-19">19 Nov 2026</time></td>
+              <td class="applications__cell applications__cell--estado" data-label="Estado"><span class="status status--review">En revisión</span></td>
+              <td class="applications__cell applications__cell--accion" data-label="Acción"><a class="applications__action" href="vacante.html">Ver detalle</a>
+              <button type="button" class="boton-cancelar">Cancelar</button>
+              </td>
+            </tr>
+            <tr class="applications__row">
+              <td class="applications__cell applications__cell--puesto" data-label="Puesto">
+                <div class="applications__job">
+                  <span class="applications__job-title">Asesor de Atención al Cliente</span>
+                  <span class="tag">Tiempo completo</span>
+                </div>
+              </td>
+              <td class="applications__cell applications__cell--empresa" data-label="Empresa">Despacho Consultor Monterrey</td>
+              <td class="applications__cell applications__cell--fecha" data-label="Fecha de postulación"><time datetime="2026-10-27">27 Oct 2026</time></td>
+              <td class="applications__cell applications__cell--estado" data-label="Estado"><span class="status status--interview">Entrevista agendada</span></td>
+              <td class="applications__cell applications__cell--accion" data-label="Acción"><a class="applications__action" href="#">Ver detalle</a>
+              <button type="button" class="boton-cancelar">Cancelar</button>
+              </td>
+            </tr>
+            <tr class="applications__row">
+              <td class="applications__cell applications__cell--puesto" data-label="Puesto">
+                <div class="applications__job">
+                  <span class="applications__job-title">Auxiliar de Almacén e Inventarios</span>
+                  <span class="tag">Tiempo completo</span>
+                </div>
+              </td>
+              <td class="applications__cell applications__cell--empresa" data-label="Empresa">Logística y Distribución del Norte</td>
+              <td class="applications__cell applications__cell--fecha" data-label="Fecha de postulación"><time datetime="2026-10-15">15 Oct 2026</time></td>
+              <td class="applications__cell applications__cell--estado" data-label="Estado"><span class="status status--rejected">No seleccionado</span></td>
+              <td class="applications__cell applications__cell--accion " data-label="Acción"><a class="applications__action" href="#">Ver detalle</a>
+              <button type="button" class="boton-cancelar">Cancelar</button>
+              </td> 
           <tbody class="data-table__body">
             <tr class="data-table__row">
               <td class="data-table__cell data-table__cell--primary">
