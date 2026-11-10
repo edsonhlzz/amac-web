@@ -1,11 +1,11 @@
 /* ==========================================================================
-   AMAC | Bolsa De Trabajo — Global stylesheet
-   One file for every page. Structure:
+   AMAC | Bolsa De Trabajo — Stylesheet
+   Estructura:
      1. Design tokens
      2. Base / reset
-     3. Layout (page + page modifiers)
+     3. Layout 
      4. Site header & navigation
-     5. Shared components (buttons, tags, status badges, stats, help links, FAB)
+     5. Shared components 
      6. Page components
         6.1 Vacancy listing   (index.html)
         6.2 Vacancy detail    (vacante.html)
@@ -21,14 +21,14 @@
    1. Design tokens
    ========================================================================== */
 :root {
-  /* ---- Brand colors ---- */
+  /* ---- Colores de la marca ---- */
   --color-primary: #003366;
   --color-accent: #c2410c;
   --color-accent-soft: #ff6b52;
   --color-success: #166534;
   --color-danger: #991b1b;
 
-  /* ---- Surfaces ---- */
+  /* ---- Superficies ---- */
   --color-page-bg: #f4f1ea;
   --color-white: #ffffff;
   --color-on-primary: #fafafa;
@@ -40,7 +40,7 @@
   --color-notice-bg: #f8f9fa;
   --color-disabled-bg: rgba(156, 163, 175, 0.5);
 
-  /* ---- Text ---- */
+  /* ---- Texto ---- */
   --color-text-heading: #111827;
   --color-text-strong: #1c2033;
   --color-text-body: #334155;
@@ -50,23 +50,23 @@
   --color-placeholder-strong: #6b7280;
   --color-placeholder-search: rgba(28, 32, 51, 0.5);
 
-  /* ---- Borders ---- */
+  /* ---- Bordes ---- */
   --color-border: #e2e8f0;
   --color-border-input: #cbd5e1;
   --color-border-select: #d1d5dc;
   --color-border-soft: #bfd7ff;
 
-  /* ---- Status palettes ---- */
+  /* ---- Paleta de colores del Estado ---- */
   --tag-bg: #ffedd5;
   --tag-fg: #9a3412;
-  /* Candidate view (Mis Solicitudes) */
+  /* Candidato - Mis Solicitudes */
   --status-review-bg: #ffedd5;
   --status-review-fg: #9a3412;
   --status-interview-bg: #dcfce7;
   --status-interview-fg: #166534;
   --status-rejected-bg: #fee2e2;
   --status-rejected-fg: #991b1b;
-  /* Company view (Panel de vacantes) */
+  /* Empresa -Panel de vacantes */
   --status-warning-bg: #fff0df;
   --status-warning-fg: #9a3412;
   --status-success-bg: #e8f3eb;
@@ -74,7 +74,7 @@
   --status-danger-bg: #fbeaea;
   --status-danger-fg: #991b1b;
 
-  /* ---- Typography ---- */
+  /* ---- Tipografía ---- */
   --font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   --fs-13: 13px;
@@ -106,7 +106,7 @@
   --fw-semibold: 600;
   --fw-bold: 700;
 
-  /* ---- Spacing ---- */
+  /* ---- Espaciado ---- */
   --space-3: 3px;
   --space-4: 4px;
   --space-6: 6px;
@@ -132,7 +132,7 @@
   --header-pad-right: 72px;
   --nav-pad-inline: 24px;
 
-  /* ---- Shape ---- */
+  /* ---- Forma ---- */
   --radius-4: 4px;
   --radius-8: 8px;
   --radius-12: 12px;
@@ -141,7 +141,7 @@
   --border-hairline: 0.8px;
   --border-checkbox: 1.5px;
 
-  /* ---- Effects ---- */
+  /* ---- Efectos ---- */
   --shadow-card:
     drop-shadow(0 4px 2px rgba(0, 0, 0, 0.25))
     drop-shadow(0 1px 1.5px rgba(0, 0, 0, 0.1))
@@ -154,8 +154,6 @@
   --shadow-fab: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.1));
   --shadow-cta-primary: drop-shadow(0 4px 6px rgba(0, 51, 102, 0.25));
   --shadow-cta-accent: drop-shadow(0 4px 6px rgba(255, 107, 82, 0.25));
-
-  /* ---- Motion ---- */
   --transition-menu: 300ms ease;
 }
 
@@ -245,7 +243,6 @@ button {
 
 /* ==========================================================================
    3. Layout
-   Each page sets its own spacing through a modifier on <main class="page">.
    ========================================================================== */
 .page {
   --page-pt: 36px;
@@ -443,10 +440,10 @@ button {
 }
 
 /* ==========================================================================
-   5. Shared components
+   5. Componentes Compartidos
    ========================================================================== */
 
-/* ---- Button (small, used in tables) ---- */
+/* ---- Buton pequeño ---- */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -545,7 +542,7 @@ button {
   white-space: nowrap;
 }
 
-/* ---- Help link ("¿Necesitas ayuda? Contáctanos") ---- */
+/* ---- ¿Necesitas ayuda? Contáctanos link ---- */
 .help-link {
   display: flex;
   align-items: center;
@@ -574,7 +571,7 @@ button {
   color: var(--color-primary);
 }
 
-/* ---- Floating help button ---- */
+/* ---- Boton de ayuda ---- */
 .help-fab {
   position: absolute;
   right: var(--fab-right);
@@ -595,10 +592,10 @@ button {
 }
 
 /* ==========================================================================
-   6.1 Vacancy listing (index.html)
+   6.1 index.html
    ========================================================================== */
 
-/* ---- Search panel ---- */
+/* ---- Panel de busqueda ---- */
 .search-panel {
   display: flex;
   flex-direction: column;
@@ -668,7 +665,7 @@ button {
   border-top: var(--border-hairline) solid var(--color-border);
 }
 
-/* ---- Filter (label + select) ---- */
+/* ---- Filtro ---- */
 .filter {
   display: flex;
   flex-direction: column;
@@ -713,7 +710,7 @@ button {
   pointer-events: none;
 }
 
-/* ---- Job list & cards ---- */
+/* ---- Lista de trabajos y tarjetas ---- */
 .job-list {
   display: flex;
   flex-direction: column;
@@ -806,7 +803,7 @@ button {
 }
 
 /* ==========================================================================
-   6.2 Vacancy detail (vacante.html)
+   6.2 Vacante.html
    ========================================================================== */
 .back-link {
   display: inline-flex;
@@ -943,7 +940,7 @@ button {
   filter: var(--shadow-cta-accent);
 }
 
-/* Bulleted requirements list */
+/* Requerimientos en bullets */
 .requirements {
   display: flex;
   flex-direction: column;
@@ -971,7 +968,7 @@ button {
 }
 
 /* ==========================================================================
-   6.3 Auth forms (login.html, registro-candidato.html)
+   6.3 login.html, registro-candidato.html forms
    ========================================================================== */
 .auth {
   display: flex;
@@ -1221,7 +1218,7 @@ button {
   display: block;
 }
 
-/* ---- Privacy notice with checkbox ---- */
+/* ---- Checkbox boton de privacidad---- */
 .notice {
   display: flex;
   align-items: flex-start;
@@ -1281,7 +1278,7 @@ button {
 }
 
 /* ==========================================================================
-   6.4 Applications table (mis-solicitudes.html)
+   6.4 mis-solicitudes.html
    ========================================================================== */
 .applications {
   margin-top: 44px;
@@ -1302,7 +1299,7 @@ button {
 .applications__col--empresa { width: 245px; }
 .applications__col--fecha   { width: 195px; }
 .applications__col--estado  { width: 215px; }
-.applications__col--accion  { width: auto; } /* 177px + 24px side padding */
+.applications__col--accion  { width: auto; } 
 
 .applications__head {
   background-color: var(--color-primary);
@@ -1376,7 +1373,7 @@ button {
   color: var(--color-text-strong);
 }
 
-/* ---- Info note ---- */
+/* ---- nota de información ---- */
 .info-note {
   display: flex;
   align-items: center;
@@ -1408,7 +1405,7 @@ button {
 }
 
 /* ==========================================================================
-   6.5 Company panel (empresa-vacantes.html)
+   6.5 empresa-vacantes.html
    ========================================================================== */
 .panel {
   overflow: hidden;
@@ -1434,15 +1431,14 @@ button {
   table-layout: fixed;
 }
 
-/* Column widths: content + 20px gap; first/last also include 24px side padding */
+/* Column widths */
 .data-table__col--1 { width: calc(var(--space-24) + 300px + var(--col-gap)); }
 .data-table__col--2 { width: calc(250px + var(--col-gap)); }
 .data-table__col--3 { width: calc(220px + var(--col-gap)); }
 .data-table__col--4 { width: calc(190px + var(--col-gap)); }
-.data-table__col--5 { width: auto; } /* 122px + 24px side padding */
+.data-table__col--5 { width: auto; } 
 
-/* Candidates table: Figma swaps the date (190px) and status (220px) widths,
-   while the "Estado" header keeps its original position (30px offset). */
+/* tabla de candidatos */
 .data-table--candidates .data-table__col--3 { width: calc(190px + var(--col-gap)); }
 .data-table--candidates .data-table__col--4 { width: calc(220px + var(--col-gap)); }
 
@@ -1550,7 +1546,7 @@ button {
 }
 
 /* ==========================================================================
-   7. Tablet (max-width: 1024px)
+   7. Tablet max-width: 1024px
    ========================================================================== */
 @media (max-width: 1024px) {
   :root {
@@ -1678,7 +1674,7 @@ button {
     --detail-pad: var(--space-32);
   }
 
-  /* ---- Tables → stacked cards ---- */
+  /* ---- Tables  ---- */
   .applications,
   .panel--vacancies {
     margin-top: var(--space-32);
@@ -1759,7 +1755,7 @@ button {
 }
 
 /* ==========================================================================
-   8. Mobile (max-width: 768px)
+   8. Mobile max-width: 768px
    ========================================================================== */
 @media (max-width: 768px) {
   :root {
@@ -1922,7 +1918,7 @@ button {
     white-space: normal;
   }
 
-  /* ---- Tables ---- */
+  /* ---- Tablas ---- */
   .applications,
   .panel--vacancies,
   .panel--candidates {
@@ -1966,7 +1962,7 @@ button {
 }
 
 /* ==========================================================================
-   9. Reduced motion
+   9. motion reducida
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
   .site-nav,
