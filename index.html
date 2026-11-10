@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Vacantes de empleo verificadas y adaptadas para adultos mayores en Monterrey y su área metropolitana.">
+  <meta name="theme-color" content="#003366">
   <title>Vacantes disponibles – AMAC | Bolsa de Trabajo</title>
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
@@ -24,7 +27,7 @@
   <header class="site-header">
     <div class="site-header__inner">
       <a class="site-header__brand" href="index.html">
-        <img class="site-header__logo" src="img/amac-logo.png" alt="AMAC Bolsa de Trabajo, ir al inicio" width="471" height="75">
+        <img class="site-header__logo" src="img/amac-logo.png" alt="AMAC Bolsa de Trabajo, ir al inicio" width="442" height="75">
       </a>
 
       <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="site-nav">
@@ -49,15 +52,22 @@
                 <svg class="icon site-nav__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
               </summary>
               <ul class="site-nav__sublist">
-                <li><a class="site-nav__sublink" href="registro-candidato.html">Soy candidato</a></li>
+                <li><a class="site-nav__sublink" href="registro-candidato.html">Registrar candidato</a></li>
+                <li><a class="site-nav__sublink" href="registro-empresa.html">Registrar empresa</a></li>
               </ul>
             </details>
           </li>
           <li class="site-nav__item">
-            <a class="site-nav__link" href="login.html">
-              Iniciar Sesión
-              <svg class="icon icon--lg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            </a>
+            <details class="site-nav__submenu">
+              <summary class="site-nav__link">
+                Iniciar Sesión
+                <svg class="icon icon--lg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </summary>
+              <ul class="site-nav__sublist">
+                <li><a class="site-nav__sublink" href="login.html">Iniciar sesión como candidato</a></li>
+                <li><a class="site-nav__sublink" href="login-empresa.html">Iniciar sesión como empresa</a></li>
+              </ul>
+            </details>
           </li>
         </ul>
       </nav>
@@ -239,6 +249,15 @@
           <a class="site-footer__link" href="tel:+528100000000">81 0000 0000</a><br>
           <a class="site-footer__link" href="mailto:contacto@amac.mx">contacto@amac.mx</a>
         </address>
+      </section>
+
+      <section class="site-footer__a11y" aria-labelledby="footer-accesibilidad">
+        <h2 class="site-footer__title" id="footer-accesibilidad">Accesibilidad</h2>
+        <!-- Modo alto contraste: el botón aparece solo con JavaScript (js/main.js) -->
+        <button class="contrast-toggle" type="button" aria-pressed="false" hidden>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 18a6 6 0 0 0 0-12v12z"/></svg>
+          Alto contraste
+        </button>
       </section>
 
       <p class="site-footer__legal">© 2026 AMAC | Bolsa de Trabajo. Proyecto académico, Universidad de Monterrey.</p>

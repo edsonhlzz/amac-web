@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Consulta el estado de los empleos a los que te has postulado en AMAC.">
+  <meta name="theme-color" content="#003366">
   <title>Mis Solicitudes – AMAC | Bolsa de Trabajo</title>
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
@@ -24,7 +27,7 @@
   <header class="site-header">
     <div class="site-header__inner">
       <a class="site-header__brand" href="index.html">
-        <img class="site-header__logo" src="img/amac-logo.png" alt="AMAC Bolsa de Trabajo, ir al inicio" width="471" height="75">
+        <img class="site-header__logo" src="img/amac-logo.png" alt="AMAC Bolsa de Trabajo, ir al inicio" width="442" height="75">
       </a>
 
       <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="site-nav">
@@ -49,15 +52,22 @@
                 <svg class="icon site-nav__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
               </summary>
               <ul class="site-nav__sublist">
-                <li><a class="site-nav__sublink" href="registro-candidato.html">Soy candidato</a></li>
+                <li><a class="site-nav__sublink" href="registro-candidato.html">Registrar candidato</a></li>
+                <li><a class="site-nav__sublink" href="registro-empresa.html">Registrar empresa</a></li>
               </ul>
             </details>
           </li>
           <li class="site-nav__item">
-            <a class="site-nav__link" href="login.html">
-              Iniciar Sesión
-              <svg class="icon icon--lg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            </a>
+            <details class="site-nav__submenu">
+              <summary class="site-nav__link">
+                Iniciar Sesión
+                <svg class="icon icon--lg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </summary>
+              <ul class="site-nav__sublist">
+                <li><a class="site-nav__sublink" href="login.html">Iniciar sesión como candidato</a></li>
+                <li><a class="site-nav__sublink" href="login-empresa.html">Iniciar sesión como empresa</a></li>
+              </ul>
+            </details>
           </li>
         </ul>
       </nav>
@@ -81,7 +91,7 @@
           <p class="stat__label">En revisión</p>
         </div>
         <div class="stat">
-          <p class="stat__value">1</p>
+          <p class="stat__value stat__value--success">1</p>
           <p class="stat__label">Entrevista agendada</p>
         </div>
         <div class="stat">
@@ -90,114 +100,71 @@
         </div>
       </section>
 
-      <section class="applications" aria-label="Listado de solicitudes">
-        <table class="applications__table">
-          <caption class="applications__caption">Historial de solicitudes</caption>
-          <colgroup class="applications__colgroup">
-            <col class="applications__col applications__col--puesto">
-            <col class="applications__col applications__col--empresa">
-            <col class="applications__col applications__col--fecha">
-            <col class="applications__col applications__col--estado">
-            <col class="applications__col applications__col--accion">
-          </colgroup>
-          <thead class="applications__head">
-      <section class="panel" aria-label="Listado de solicitudes">
-        <table class="data-table">
-          <thead class="data-table__head">
-            <tr>
+      <!-- RF-005 / RF-006 -->
+      <section class="table-section" aria-labelledby="titulo-solicitudes">
+        <h2 class="table-section__title visually-hidden" id="titulo-solicitudes">Listado de solicitudes</h2>
+        <div class="panel">
+          <table class="data-table" aria-labelledby="titulo-solicitudes">
+            <thead class="data-table__head">
+              <tr>
               <th class="data-table__th" scope="col">Puesto</th>
               <th class="data-table__th" scope="col">Empresa</th>
               <th class="data-table__th" scope="col">Fecha de postulación</th>
               <th class="data-table__th" scope="col">Estado</th>
-              <th class="data-table__th data-table__th--end" scope="col">Acción</th>
-            </tr>
-          </thead>
-          <tbody class="applications__body">
-            <tr class="applications__row">
-              <td class="applications__cell applications__cell--puesto" data-label="Puesto">
-                <div class="applications__job">
-                  <span class="applications__job-title">Cajero / Atención en Mostrador</span>
-                  <span class="tag">Tiempo completo</span>
-                </div>
-              </td>
-              <td class="applications__cell applications__cell--empresa" data-label="Empresa">Cadena Comercial OXXO</td>
-              <td class="applications__cell applications__cell--fecha" data-label="Fecha de postulación"><time datetime="2026-11-19">19 Nov 2026</time></td>
-              <td class="applications__cell applications__cell--estado" data-label="Estado"><span class="status status--review">En revisión</span></td>
-              <td class="applications__cell applications__cell--accion" data-label="Acción"><a class="applications__action" href="vacante.html">Ver detalle</a>
-              <button type="button" class="boton-cancelar">Cancelar</button>
-              </td>
-            </tr>
-            <tr class="applications__row">
-              <td class="applications__cell applications__cell--puesto" data-label="Puesto">
-                <div class="applications__job">
-                  <span class="applications__job-title">Asesor de Atención al Cliente</span>
-                  <span class="tag">Tiempo completo</span>
-                </div>
-              </td>
-              <td class="applications__cell applications__cell--empresa" data-label="Empresa">Despacho Consultor Monterrey</td>
-              <td class="applications__cell applications__cell--fecha" data-label="Fecha de postulación"><time datetime="2026-10-27">27 Oct 2026</time></td>
-              <td class="applications__cell applications__cell--estado" data-label="Estado"><span class="status status--interview">Entrevista agendada</span></td>
-              <td class="applications__cell applications__cell--accion" data-label="Acción"><a class="applications__action" href="#">Ver detalle</a>
-              <button type="button" class="boton-cancelar">Cancelar</button>
-              </td>
-            </tr>
-            <tr class="applications__row">
-              <td class="applications__cell applications__cell--puesto" data-label="Puesto">
-                <div class="applications__job">
-                  <span class="applications__job-title">Auxiliar de Almacén e Inventarios</span>
-                  <span class="tag">Tiempo completo</span>
-                </div>
-              </td>
-              <td class="applications__cell applications__cell--empresa" data-label="Empresa">Logística y Distribución del Norte</td>
-              <td class="applications__cell applications__cell--fecha" data-label="Fecha de postulación"><time datetime="2026-10-15">15 Oct 2026</time></td>
-              <td class="applications__cell applications__cell--estado" data-label="Estado"><span class="status status--rejected">No seleccionado</span></td>
-              <td class="applications__cell applications__cell--accion " data-label="Acción"><a class="applications__action" href="#">Ver detalle</a>
-              <button type="button" class="boton-cancelar">Cancelar</button>
-              </td> 
-          <tbody class="data-table__body">
+              <th class="data-table__th data-table__th--end" scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody class="data-table__body">
             <tr class="data-table__row">
-              <td class="data-table__cell data-table__cell--primary">
-                <div class="data-table__primary">
+              <th class="data-table__cell data-table__cell--primary" scope="row">
+                <span class="data-table__primary">
                   <span class="data-table__title">Cajero / Atención en Mostrador</span>
                   <span class="tag">Tiempo completo</span>
-                </div>
-              </td>
+                </span>
+              </th>
               <td class="data-table__cell" data-label="Empresa">Cadena Comercial OXXO</td>
               <td class="data-table__cell" data-label="Fecha de postulación"><time datetime="2026-11-02">02 Nov 2026</time></td>
               <td class="data-table__cell data-table__cell--status"><span class="status status--review">En revisión</span></td>
-              <td class="data-table__cell data-table__cell--action"><a class="btn" href="vacante.html">Ver detalle</a></td>
+              <td class="data-table__cell data-table__cell--action">
+                <div class="data-table__actions"><a class="btn" href="vacante.html">Ver detalle<span class="visually-hidden"> de Cajero / Atención en Mostrador</span></a><button class="btn btn--danger" type="button">Cancelar<span class="visually-hidden"> solicitud de Cajero / Atención en Mostrador</span></button></div>
+              </td>
             </tr>
             <tr class="data-table__row">
-              <td class="data-table__cell data-table__cell--primary">
-                <div class="data-table__primary">
+              <th class="data-table__cell data-table__cell--primary" scope="row">
+                <span class="data-table__primary">
                   <span class="data-table__title">Asesor de Atención al Cliente</span>
                   <span class="tag">Tiempo completo</span>
-                </div>
-              </td>
+                </span>
+              </th>
               <td class="data-table__cell" data-label="Empresa">Despacho Consultor Monterrey</td>
               <td class="data-table__cell" data-label="Fecha de postulación"><time datetime="2026-10-27">27 Oct 2026</time></td>
               <td class="data-table__cell data-table__cell--status"><span class="status status--interview">Entrevista agendada</span></td>
-              <td class="data-table__cell data-table__cell--action"><a class="btn" href="#">Ver detalle</a></td>
+              <td class="data-table__cell data-table__cell--action">
+                <div class="data-table__actions"><a class="btn" href="vacante.html">Ver detalle<span class="visually-hidden"> de Asesor de Atención al Cliente</span></a><button class="btn btn--danger" type="button">Cancelar<span class="visually-hidden"> solicitud de Asesor de Atención al Cliente</span></button></div>
+              </td>
             </tr>
             <tr class="data-table__row">
-              <td class="data-table__cell data-table__cell--primary">
-                <div class="data-table__primary">
+              <th class="data-table__cell data-table__cell--primary" scope="row">
+                <span class="data-table__primary">
                   <span class="data-table__title">Auxiliar de Almacén e Inventarios</span>
                   <span class="tag">Tiempo completo</span>
-                </div>
-              </td>
+                </span>
+              </th>
               <td class="data-table__cell" data-label="Empresa">Logística y Distribución del Norte</td>
               <td class="data-table__cell" data-label="Fecha de postulación"><time datetime="2026-10-15">15 Oct 2026</time></td>
               <td class="data-table__cell data-table__cell--status"><span class="status status--rejected">No seleccionado</span></td>
-              <td class="data-table__cell data-table__cell--action"><a class="btn" href="#">Ver detalle</a></td>
+              <td class="data-table__cell data-table__cell--action">
+                <div class="data-table__actions"><a class="btn" href="vacante.html">Ver detalle<span class="visually-hidden"> de Auxiliar de Almacén e Inventarios</span></a></div>
+              </td>
             </tr>
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <aside class="info-note" aria-label="Nota informativa">
         <svg class="icon info-note__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-        <p><strong class="info-note__label">Nota:</strong> El estado de tus solicitudes se actualiza conforme avanza el proceso de selección. Si tienes dudas, contacta a la empresa directamente.</p>
+        <p><strong class="info-note__label">Nota:</strong> El estado de tus solicitudes se actualiza conforme avanza el proceso de selección. Puedes cancelar una solicitud mientras esté en revisión o con entrevista agendada.</p>
       </aside>
     </div>
   </main>
@@ -236,6 +203,15 @@
           <a class="site-footer__link" href="tel:+528100000000">81 0000 0000</a><br>
           <a class="site-footer__link" href="mailto:contacto@amac.mx">contacto@amac.mx</a>
         </address>
+      </section>
+
+      <section class="site-footer__a11y" aria-labelledby="footer-accesibilidad">
+        <h2 class="site-footer__title" id="footer-accesibilidad">Accesibilidad</h2>
+        <!-- Modo alto contraste: el botón aparece solo con JavaScript (js/main.js) -->
+        <button class="contrast-toggle" type="button" aria-pressed="false" hidden>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 18a6 6 0 0 0 0-12v12z"/></svg>
+          Alto contraste
+        </button>
       </section>
 
       <p class="site-footer__legal">© 2026 AMAC | Bolsa de Trabajo. Proyecto académico, Universidad de Monterrey.</p>

@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Detalle de la vacante Cajero / Atención en Mostrador en Cadena Comercial OXXO, Guadalupe, Nuevo León.">
+  <meta name="theme-color" content="#003366">
   <title>Cajero / Atención en Mostrador – AMAC | Bolsa de Trabajo</title>
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
@@ -24,7 +27,7 @@
   <header class="site-header">
     <div class="site-header__inner">
       <a class="site-header__brand" href="index.html">
-        <img class="site-header__logo" src="img/amac-logo.png" alt="AMAC Bolsa de Trabajo, ir al inicio" width="471" height="75">
+        <img class="site-header__logo" src="img/amac-logo.png" alt="AMAC Bolsa de Trabajo, ir al inicio" width="442" height="75">
       </a>
 
       <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="site-nav">
@@ -49,15 +52,22 @@
                 <svg class="icon site-nav__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
               </summary>
               <ul class="site-nav__sublist">
-                <li><a class="site-nav__sublink" href="registro-candidato.html">Soy candidato</a></li>
+                <li><a class="site-nav__sublink" href="registro-candidato.html">Registrar candidato</a></li>
+                <li><a class="site-nav__sublink" href="registro-empresa.html">Registrar empresa</a></li>
               </ul>
             </details>
           </li>
           <li class="site-nav__item">
-            <a class="site-nav__link" href="login.html">
-              Iniciar Sesión
-              <svg class="icon icon--lg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            </a>
+            <details class="site-nav__submenu">
+              <summary class="site-nav__link">
+                Iniciar Sesión
+                <svg class="icon icon--lg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </summary>
+              <ul class="site-nav__sublist">
+                <li><a class="site-nav__sublink" href="login.html">Iniciar sesión como candidato</a></li>
+                <li><a class="site-nav__sublink" href="login-empresa.html">Iniciar sesión como empresa</a></li>
+              </ul>
+            </details>
           </li>
         </ul>
       </nav>
@@ -72,7 +82,7 @@
 
     <article class="job-detail" aria-labelledby="job-title">
       <header class="job-detail__header">
-        <h1 class="job-detail__title" id="job-title">Cajero / Atención en Mostrador</h1>
+        <h1 class="job-detail__title" id="job-title" tabindex="-1">Cajero / Atención en Mostrador</h1>
         <p class="job-detail__company">Cadena Comercial OXXO</p>
       </header>
 
@@ -88,6 +98,10 @@
         <div class="job-detail__info-row">
           <dt class="job-detail__info-label">Salario:</dt>
           <dd class="job-detail__info-value">$7,500 pesos mensuales (Prestaciones de ley)</dd>
+        </div>
+        <div class="job-detail__info-row">
+          <dt class="job-detail__info-label">Teléfono de la empresa:</dt>
+          <dd class="job-detail__info-value">81 1234 5678</dd>
         </div>
       </dl>
 
@@ -111,11 +125,31 @@
 
       <hr class="job-detail__divider">
 
+      <!-- Postularme (RF-004) y Llamar (RF-051) -->
       <div class="job-detail__actions">
-        <button class="btn btn--accent btn--lg" type="button">¡Quiero Postularme!</button>
+        <!-- Sin JavaScript abre la ventana con :target; con JavaScript usa <dialog> (atrapa el foco y cierra con Esc) -->
+        <a class="btn btn--accent btn--lg" href="#confirmacion" data-abrir-dialogo>¡Quiero Postularme!</a>
+        <!-- TODO: teléfono real de la empresa (dato de ejemplo) -->
+        <a class="btn btn--outline btn--lg" href="tel:+528112345678">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Llamar a la empresa
+        </a>
       </div>
     </article>
   </main>
+
+  <!-- ===================== CONFIRMACIÓN DE POSTULACIÓN ===================== -->
+  <dialog class="modal" id="confirmacion" aria-labelledby="confirmacion-titulo" tabindex="-1">
+    <div class="modal__content">
+      <svg class="icon modal__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+      <h2 class="modal__title" id="confirmacion-titulo">¡Postulación enviada!</h2>
+      <p class="modal__text">Tu solicitud para <strong>Cajero / Atención en Mostrador</strong> en Cadena Comercial OXXO se envió con éxito. Puedes revisar su estado en Mis Solicitudes.</p>
+      <div class="modal__actions">
+        <a class="btn btn--lg btn--block" href="mis-solicitudes.html">Ir a Mis Solicitudes</a>
+        <a class="btn btn--outline btn--block" href="#job-title" data-cerrar-dialogo>Seguir viendo la vacante</a>
+      </div>
+    </div>
+  </dialog>
 
   <!-- ===================== BOTÓN DE AYUDA / LLAMAR A AMAC (RF-052) ===================== -->
   <!-- TODO: reemplazar por el teléfono real de AMAC -->
@@ -151,6 +185,15 @@
           <a class="site-footer__link" href="tel:+528100000000">81 0000 0000</a><br>
           <a class="site-footer__link" href="mailto:contacto@amac.mx">contacto@amac.mx</a>
         </address>
+      </section>
+
+      <section class="site-footer__a11y" aria-labelledby="footer-accesibilidad">
+        <h2 class="site-footer__title" id="footer-accesibilidad">Accesibilidad</h2>
+        <!-- Modo alto contraste: el botón aparece solo con JavaScript (js/main.js) -->
+        <button class="contrast-toggle" type="button" aria-pressed="false" hidden>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 18a6 6 0 0 0 0-12v12z"/></svg>
+          Alto contraste
+        </button>
       </section>
 
       <p class="site-footer__legal">© 2026 AMAC | Bolsa de Trabajo. Proyecto académico, Universidad de Monterrey.</p>

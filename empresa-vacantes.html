@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Panel de empresa en AMAC: vacantes publicadas y candidatos postulados.">
+  <meta name="theme-color" content="#003366">
   <title>Panel de vacantes y postulaciones – AMAC | Bolsa de Trabajo</title>
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
@@ -24,7 +27,7 @@
   <header class="site-header">
     <div class="site-header__inner">
       <a class="site-header__brand" href="index.html">
-        <img class="site-header__logo" src="img/amac-logo.png" alt="AMAC Bolsa de Trabajo, ir al inicio" width="471" height="75">
+        <img class="site-header__logo" src="img/amac-logo.png" alt="AMAC Bolsa de Trabajo, ir al inicio" width="442" height="75">
       </a>
 
       <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="site-nav">
@@ -49,15 +52,22 @@
                 <svg class="icon site-nav__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
               </summary>
               <ul class="site-nav__sublist">
-                <li><a class="site-nav__sublink" href="registro-candidato.html">Soy candidato</a></li>
+                <li><a class="site-nav__sublink" href="registro-candidato.html">Registrar candidato</a></li>
+                <li><a class="site-nav__sublink" href="registro-empresa.html">Registrar empresa</a></li>
               </ul>
             </details>
           </li>
           <li class="site-nav__item">
-            <a class="site-nav__link" href="login.html">
-              Iniciar Sesión
-              <svg class="icon icon--lg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            </a>
+            <details class="site-nav__submenu">
+              <summary class="site-nav__link">
+                Iniciar Sesión
+                <svg class="icon icon--lg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </summary>
+              <ul class="site-nav__sublist">
+                <li><a class="site-nav__sublink" href="login.html">Iniciar sesión como candidato</a></li>
+                <li><a class="site-nav__sublink" href="login-empresa.html">Iniciar sesión como empresa</a></li>
+              </ul>
+            </details>
           </li>
         </ul>
       </nav>
@@ -90,110 +100,128 @@
         </div>
       </section>
 
-      <!-- Vacantes -->
-      <section class="panel" aria-label="Vacantes publicadas">
-        <table class="data-table">
-          <thead class="data-table__head">
-            <tr>
+      <!-- RF-020 · Vacantes publicadas -->
+      <section class="table-section" aria-labelledby="titulo-vacantes">
+        <h2 class="table-section__title" id="titulo-vacantes">Vacantes publicadas</h2>
+        <div class="panel">
+          <table class="data-table" aria-labelledby="titulo-vacantes">
+            <thead class="data-table__head">
+              <tr>
               <th class="data-table__th" scope="col">Vacante</th>
               <th class="data-table__th" scope="col">Ubicación</th>
               <th class="data-table__th" scope="col">Publicada</th>
               <th class="data-table__th" scope="col">Estado</th>
               <th class="data-table__th data-table__th--end" scope="col">Acción</th>
-            </tr>
-          </thead>
-          <tbody class="data-table__body">
+              </tr>
+            </thead>
+            <tbody class="data-table__body">
             <tr class="data-table__row">
-              <td class="data-table__cell data-table__cell--primary">
-                <div class="data-table__primary">
+              <th class="data-table__cell data-table__cell--primary" scope="row">
+                <span class="data-table__primary">
                   <span class="data-table__title">Cajero / Atención en Mostrador</span>
                   <span class="tag">Tiempo completo</span>
-                </div>
-              </td>
+                </span>
+              </th>
               <td class="data-table__cell" data-label="Ubicación">Guadalupe</td>
               <td class="data-table__cell" data-label="Publicada"><time datetime="2026-08-02">02 Ago 2026</time></td>
               <td class="data-table__cell data-table__cell--status"><span class="status status--warning">Abierta</span></td>
-              <td class="data-table__cell data-table__cell--action"><a class="btn" href="vacante.html">Ver detalle</a></td>
+              <td class="data-table__cell data-table__cell--action">
+                <div class="data-table__actions"><a class="btn" href="vacante.html">Ver detalle<span class="visually-hidden"> de Cajero / Atención en Mostrador</span></a></div>
+              </td>
             </tr>
             <tr class="data-table__row">
-              <td class="data-table__cell data-table__cell--primary">
-                <div class="data-table__primary">
+              <th class="data-table__cell data-table__cell--primary" scope="row">
+                <span class="data-table__primary">
                   <span class="data-table__title">Asesor de Atención al Cliente</span>
                   <span class="tag">Tiempo completo</span>
-                </div>
-              </td>
+                </span>
+              </th>
               <td class="data-table__cell" data-label="Ubicación">Monterrey</td>
               <td class="data-table__cell" data-label="Publicada"><time datetime="2026-09-30">30 Sep 2026</time></td>
               <td class="data-table__cell data-table__cell--status"><span class="status status--success">Entrevistas</span></td>
-              <td class="data-table__cell data-table__cell--action"><a class="btn" href="#">Ver detalle</a></td>
+              <td class="data-table__cell data-table__cell--action">
+                <div class="data-table__actions"><a class="btn" href="vacante.html">Ver detalle<span class="visually-hidden"> de Asesor de Atención al Cliente</span></a></div>
+              </td>
             </tr>
             <tr class="data-table__row">
-              <td class="data-table__cell data-table__cell--primary">
-                <div class="data-table__primary">
+              <th class="data-table__cell data-table__cell--primary" scope="row">
+                <span class="data-table__primary">
                   <span class="data-table__title">Guardia de Seguridad</span>
                   <span class="tag">Tiempo completo</span>
-                </div>
-              </td>
+                </span>
+              </th>
               <td class="data-table__cell" data-label="Ubicación">Apodaca</td>
               <td class="data-table__cell" data-label="Publicada"><time datetime="2026-05-08">08 May 2026</time></td>
               <td class="data-table__cell data-table__cell--status"><span class="status status--danger">Cerrada</span></td>
-              <td class="data-table__cell data-table__cell--action"><span class="btn btn--disabled" aria-disabled="true">Ver detalle</span></td>
+              <td class="data-table__cell data-table__cell--action">
+                <div class="data-table__actions"><button class="btn" type="button" disabled>Ver detalle<span class="visually-hidden"> de Guardia de Seguridad (vacante cerrada)</span></button></div>
+              </td>
             </tr>
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
       </section>
 
-      <!-- Candidatos -->
-      <section class="panel" aria-label="Candidatos postulados">
-        <table class="data-table">
-          <thead class="data-table__head data-table__head--light">
-            <tr>
+      <!-- RF-021 · Candidatos postulados -->
+      <section class="table-section" aria-labelledby="titulo-candidatos">
+        <h2 class="table-section__title" id="titulo-candidatos">Candidatos postulados</h2>
+        <div class="panel">
+          <table class="data-table" aria-labelledby="titulo-candidatos">
+            <thead class="data-table__head data-table__head--light">
+              <tr>
               <th class="data-table__th" scope="col">Candidato</th>
               <th class="data-table__th" scope="col">Vacante</th>
               <th class="data-table__th" scope="col">Fecha</th>
               <th class="data-table__th" scope="col">Estado</th>
               <th class="data-table__th data-table__th--end" scope="col">Acción</th>
-            </tr>
-          </thead>
-          <tbody class="data-table__body">
+              </tr>
+            </thead>
+            <tbody class="data-table__body">
             <tr class="data-table__row">
-              <td class="data-table__cell data-table__cell--primary">
-                <div class="data-table__primary">
+              <th class="data-table__cell data-table__cell--primary" scope="row">
+                <span class="data-table__primary">
                   <span class="data-table__title">Ana Torres</span>
                   <span class="data-table__meta">5 años de experiencia en atención al cliente</span>
-                </div>
-              </td>
+                </span>
+              </th>
               <td class="data-table__cell" data-label="Vacante">Cajero / Atención en Mostrador</td>
               <td class="data-table__cell" data-label="Fecha"><time datetime="2026-11-02">02 Nov 2026</time></td>
               <td class="data-table__cell data-table__cell--status"><span class="status status--warning">En revisión</span></td>
-              <td class="data-table__cell data-table__cell--action"><a class="btn" href="#">Ver</a></td>
+              <td class="data-table__cell data-table__cell--action">
+                <div class="data-table__actions"><a class="btn" href="solicitudes-recibidas.html#ana-torres">Ver<span class="visually-hidden"> postulación de Ana Torres</span></a></div>
+              </td>
             </tr>
             <tr class="data-table__row">
-              <td class="data-table__cell data-table__cell--primary">
-                <div class="data-table__primary">
+              <th class="data-table__cell data-table__cell--primary" scope="row">
+                <span class="data-table__primary">
                   <span class="data-table__title">Luis Ramírez</span>
                   <span class="data-table__meta">8 años en consultoría y ventas inmobiliarias</span>
-                </div>
-              </td>
+                </span>
+              </th>
               <td class="data-table__cell" data-label="Vacante">Asesor de Atención al Cliente</td>
               <td class="data-table__cell" data-label="Fecha"><time datetime="2026-10-27">27 Oct 2026</time></td>
               <td class="data-table__cell data-table__cell--status"><span class="status status--danger">No seleccionado</span></td>
-              <td class="data-table__cell data-table__cell--action"><a class="btn" href="#">Ver</a></td>
+              <td class="data-table__cell data-table__cell--action">
+                <div class="data-table__actions"><a class="btn" href="solicitudes-recibidas.html#luis-ramirez">Ver<span class="visually-hidden"> postulación de Luis Ramírez</span></a></div>
+              </td>
             </tr>
             <tr class="data-table__row">
-              <td class="data-table__cell data-table__cell--primary">
-                <div class="data-table__primary">
+              <th class="data-table__cell data-table__cell--primary" scope="row">
+                <span class="data-table__primary">
                   <span class="data-table__title">Jorge Romero</span>
                   <span class="data-table__meta">3 años en logística y control de inventarios</span>
-                </div>
-              </td>
+                </span>
+              </th>
               <td class="data-table__cell" data-label="Vacante">Auxiliar de Almacén e Inventarios</td>
               <td class="data-table__cell" data-label="Fecha"><time datetime="2026-10-15">15 Oct 2026</time></td>
               <td class="data-table__cell data-table__cell--status"><span class="status status--success">Entrevista agendada</span></td>
-              <td class="data-table__cell data-table__cell--action"><a class="btn" href="#">Ver</a></td>
+              <td class="data-table__cell data-table__cell--action">
+                <div class="data-table__actions"><a class="btn" href="solicitudes-recibidas.html#jorge-romero">Ver<span class="visually-hidden"> postulación de Jorge Romero</span></a></div>
+              </td>
             </tr>
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
       </section>
     </div>
   </main>
@@ -232,6 +260,15 @@
           <a class="site-footer__link" href="tel:+528100000000">81 0000 0000</a><br>
           <a class="site-footer__link" href="mailto:contacto@amac.mx">contacto@amac.mx</a>
         </address>
+      </section>
+
+      <section class="site-footer__a11y" aria-labelledby="footer-accesibilidad">
+        <h2 class="site-footer__title" id="footer-accesibilidad">Accesibilidad</h2>
+        <!-- Modo alto contraste: el botón aparece solo con JavaScript (js/main.js) -->
+        <button class="contrast-toggle" type="button" aria-pressed="false" hidden>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 18a6 6 0 0 0 0-12v12z"/></svg>
+          Alto contraste
+        </button>
       </section>
 
       <p class="site-footer__legal">© 2026 AMAC | Bolsa de Trabajo. Proyecto académico, Universidad de Monterrey.</p>
