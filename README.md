@@ -2,8 +2,8 @@
 
 Plataforma web de empleo para **adultos mayores** en Monterrey y su área metropolitana. Esta entrega convierte el prototipo de Figma en un sitio estático con **HTML semántico y CSS puro**, mobile-first y accesible.
 
-- **Sitio publicado:** https://amac-web.vercel.app
-- **Repositorio:** https://github.com/USUARIO/amac-web
+- **Sitio publicado:** https://amac-web-tawny.vercel.app
+- **Repositorio:** https://github.com/edsonhlzz/amac-web
 - **Prototipo en Figma:** https://www.figma.com/design/YXIvKzFADCwxvVKd1LbgfI
 
 > Materia: Desarrollo de Aplicaciones Web - Entrega 2 (HTML + CSS) - Universidad de Monterrey
