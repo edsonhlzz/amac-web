@@ -70,100 +70,149 @@
       <p class="page-intro__subtitle">Oportunidades verificadas y adaptadas para ti</p>
     </section>
 
-    <form class="search-panel" role="search" action="index.html" method="get">
-      <div class="search-panel__row">
-        <div class="search-panel__field">
-          <label class="visually-hidden" for="busqueda">Buscar vacantes</label>
-          <div class="search-panel__control">
-            <svg class="icon search-panel__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-            <input class="search-panel__input" id="busqueda" type="search" name="q" placeholder="Puesto, palabra clave o empresa">
+    <!-- Buscador y filtros (RF-002, RF-007). En esta entrega es visual: el botón recarga la página. -->
+    <section aria-labelledby="titulo-buscador">
+      <h2 class="visually-hidden" id="titulo-buscador">Buscar y filtrar vacantes</h2>
+      <form class="search-panel" role="search" action="index.html" method="get">
+        <div class="search-panel__row">
+          <div class="search-panel__field">
+            <!-- Cambio vs. Figma: etiqueta visible (requisito 4.2, no basta el placeholder) -->
+            <label class="filter__label" for="busqueda">¿Qué empleo buscas?</label>
+            <div class="search-panel__control">
+              <svg class="icon search-panel__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <input class="search-panel__input" id="busqueda" type="search" name="q" placeholder="Puesto, palabra clave o empresa">
+            </div>
           </div>
+          <button class="btn btn--accent" type="submit">Buscar</button>
         </div>
-        <button class="btn btn--accent" type="submit">Buscar</button>
-      </div>
 
-      <div class="search-panel__filters">
+        <fieldset class="search-panel__filters">
+          <legend class="visually-hidden">Filtrar resultados</legend>
         <div class="filter">
           <label class="filter__label" for="filter-horario">Horario</label>
           <div class="filter__control">
             <select class="filter__select" id="filter-horario" name="horario">
               <option value="">Todos los horarios</option>
+              <option value="matutino">Matutino</option>
+              <option value="vespertino">Vespertino</option>
+              <option value="medio-tiempo">Medio tiempo</option>
+              <option value="fin-de-semana">Fines de semana</option>
             </select>
             <svg class="icon filter__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
           </div>
         </div>
-
         <div class="filter">
           <label class="filter__label" for="filter-categoria">Categoría</label>
           <div class="filter__control">
             <select class="filter__select" id="filter-categoria" name="categoria">
               <option value="">Todas las categorías</option>
+              <option value="atencion-cliente">Atención al cliente</option>
+              <option value="ventas">Ventas y comercio</option>
+              <option value="administracion">Administración</option>
+              <option value="almacen">Almacén y logística</option>
+              <option value="alimentos">Cocina y alimentos</option>
             </select>
             <svg class="icon filter__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
           </div>
         </div>
-
         <div class="filter">
           <label class="filter__label" for="filter-distancia">Distancia</label>
           <div class="filter__control">
             <select class="filter__select" id="filter-distancia" name="distancia">
               <option value="">Cualquier distancia</option>
+              <option value="5">Menos de 5 km</option>
+              <option value="10">Menos de 10 km</option>
+              <option value="20">Menos de 20 km</option>
             </select>
             <svg class="icon filter__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
           </div>
         </div>
-      </div>
-    </form>
+        </fieldset>
+      </form>
+    </section>
 
-    <section class="job-list" aria-label="Listado de vacantes">
-      <article class="job-card">
-        <div class="job-card__body">
-          <h3 class="job-card__title">Cajero / Atención en Mostrador</h3>
-          <p class="job-card__company">Cadena Comercial OXXO</p>
-          <p class="job-card__salary"><strong class="job-card__salary-amount">$7,500 netos al mes</strong> (Prestaciones de ley)</p>
-          <p class="job-card__meta">Guadalupe, Nuevo León • Lunes a Viernes, 8:00 AM a 4:00 PM</p>
-        </div>
-        <a class="btn" href="#">Ver detalle</a>
-      </article>
-
-      <article class="job-card">
-        <div class="job-card__body">
-          <h3 class="job-card__title">Asesor de Atención al Cliente</h3>
-          <p class="job-card__company">Grupo Financiero Banorte</p>
-          <p class="job-card__salary"><strong class="job-card__salary-amount">$8,200 netos al mes</strong> (Prestaciones de ley)</p>
-          <p class="job-card__meta">Monterrey, Zona Centro • Lunes a Viernes, 7:00 AM a 3:00 PM</p>
-        </div>
-        <a class="btn" href="#">Ver detalle</a>
-      </article>
-
-      <article class="job-card">
-        <div class="job-card__body">
-          <h3 class="job-card__title">Recepcionista y Atención Telefónica</h3>
-          <p class="job-card__company">Despacho Consultor Monterrey</p>
-          <p class="job-card__salary"><strong class="job-card__salary-amount">$9,200 netos al mes</strong> (Prestaciones de ley)</p>
-          <p class="job-card__meta">Monterrey, Obispado • Lunes a Viernes, 9:00 AM a 5:00 PM</p>
-        </div>
-        <a class="btn" href="#">Ver detalle</a>
-      </article>
-
-      <article class="job-card">
-        <div class="job-card__body">
-          <h3 class="job-card__title">Auxiliar de Almacén e Inventarios</h3>
-          <p class="job-card__company">Logística y Distribución del Norte</p>
-          <p class="job-card__salary"><strong class="job-card__salary-amount">$10,000 netos al mes</strong> (Pago quincenal)</p>
-          <p class="job-card__meta">San Nicolás • Lunes a Sábado, 7:00 AM a 4:00 PM</p>
-        </div>
-        <a class="btn" href="#">Ver detalle</a>
-      </article>
+    <!-- Listado de vacantes (RF-001) -->
+    <section aria-labelledby="titulo-resultados">
+      <h2 class="visually-hidden" id="titulo-resultados">6 vacantes encontradas</h2>
+      <ul class="job-list">
+        <li>
+          <article class="job-card">
+            <div class="job-card__body">
+              <h3 class="job-card__title">Cajero / Atención en Mostrador</h3>
+              <p class="job-card__company">Cadena Comercial OXXO</p>
+              <p class="job-card__salary"><strong class="job-card__salary-amount">$7,500 netos al mes</strong> (Prestaciones de ley)</p>
+              <p class="job-card__meta"><span class="visually-hidden">Ubicación: </span>Guadalupe, Nuevo León <span aria-hidden="true">•</span> <span class="visually-hidden">Horario: </span>Lunes a Viernes, 8:00 AM a 4:00 PM</p>
+            </div>
+            <a class="btn" href="vacante.html">Ver detalle<span class="visually-hidden"> de Cajero / Atención en Mostrador</span></a>
+          </article>
+        </li>
+        <li>
+          <article class="job-card">
+            <div class="job-card__body">
+              <h3 class="job-card__title">Asesor de Atención al Cliente</h3>
+              <p class="job-card__company">Grupo Financiero Banorte</p>
+              <p class="job-card__salary"><strong class="job-card__salary-amount">$8,200 netos al mes</strong> (Prestaciones de ley)</p>
+              <p class="job-card__meta"><span class="visually-hidden">Ubicación: </span>Monterrey, Zona Centro <span aria-hidden="true">•</span> <span class="visually-hidden">Horario: </span>Lunes a Viernes, 7:00 AM a 3:00 PM</p>
+            </div>
+            <a class="btn" href="vacante.html">Ver detalle<span class="visually-hidden"> de Asesor de Atención al Cliente</span></a>
+          </article>
+        </li>
+        <li>
+          <article class="job-card">
+            <div class="job-card__body">
+              <h3 class="job-card__title">Recepcionista y Atención Telefónica</h3>
+              <p class="job-card__company">Despacho Consultor Monterrey</p>
+              <p class="job-card__salary"><strong class="job-card__salary-amount">$9,200 netos al mes</strong> (Prestaciones de ley)</p>
+              <p class="job-card__meta"><span class="visually-hidden">Ubicación: </span>Monterrey, Obispado <span aria-hidden="true">•</span> <span class="visually-hidden">Horario: </span>Lunes a Viernes, 9:00 AM a 5:00 PM</p>
+            </div>
+            <a class="btn" href="vacante.html">Ver detalle<span class="visually-hidden"> de Recepcionista y Atención Telefónica</span></a>
+          </article>
+        </li>
+        <li>
+          <article class="job-card">
+            <div class="job-card__body">
+              <h3 class="job-card__title">Auxiliar de Almacén e Inventarios</h3>
+              <p class="job-card__company">Logística y Distribución del Norte</p>
+              <p class="job-card__salary"><strong class="job-card__salary-amount">$10,000 netos al mes</strong> (Pago quincenal)</p>
+              <p class="job-card__meta"><span class="visually-hidden">Ubicación: </span>San Nicolás de los Garza <span aria-hidden="true">•</span> <span class="visually-hidden">Horario: </span>Lunes a Sábado, 7:00 AM a 4:00 PM</p>
+            </div>
+            <a class="btn" href="vacante.html">Ver detalle<span class="visually-hidden"> de Auxiliar de Almacén e Inventarios</span></a>
+          </article>
+        </li>
+        <li>
+          <article class="job-card">
+            <div class="job-card__body">
+              <h3 class="job-card__title">Empacador / Apoyo en Cajas</h3>
+              <p class="job-card__company">Supermercados del Norte</p>
+              <p class="job-card__salary"><strong class="job-card__salary-amount">$6,800 netos al mes</strong> (Prestaciones de ley)</p>
+              <p class="job-card__meta"><span class="visually-hidden">Ubicación: </span>Apodaca, Nuevo León <span aria-hidden="true">•</span> <span class="visually-hidden">Horario: </span>Sábado y Domingo, 10:00 AM a 6:00 PM</p>
+            </div>
+            <a class="btn" href="vacante.html">Ver detalle<span class="visually-hidden"> de Empacador / Apoyo en Cajas</span></a>
+          </article>
+        </li>
+        <li>
+          <article class="job-card">
+            <div class="job-card__body">
+              <h3 class="job-card__title">Asistente de Cocina</h3>
+              <p class="job-card__company">Restaurante La Fonda Regia</p>
+              <p class="job-card__salary"><strong class="job-card__salary-amount">$7,800 netos al mes</strong> (Prestaciones de ley)</p>
+              <p class="job-card__meta"><span class="visually-hidden">Ubicación: </span>San Pedro Garza García <span aria-hidden="true">•</span> <span class="visually-hidden">Horario: </span>Martes a Sábado, 7:00 AM a 1:00 PM</p>
+            </div>
+            <a class="btn" href="vacante.html">Ver detalle<span class="visually-hidden"> de Asistente de Cocina</span></a>
+          </article>
+        </li>
+      </ul>
     </section>
   </main>
 
   <!-- ===================== BOTÓN DE AYUDA / LLAMAR A AMAC (RF-052) ===================== -->
   <!-- TODO: reemplazar por el teléfono real de AMAC -->
-  <a class="help-fab" href="tel:+528100000000">
-    <svg class="icon help-fab__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-    <span class="visually-hidden">Llamar a AMAC para pedir ayuda</span>
-  </a>
+  <aside class="help" aria-label="Ayuda telefónica">
+    <a class="help-fab" href="tel:+528100000000">
+      <svg class="icon help-fab__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span class="visually-hidden">Llamar a AMAC para pedir ayuda</span>
+    </a>
+  </aside>
 
   <!-- ===================== PIE DE PÁGINA (idéntico en todas las páginas) ===================== -->
   <footer class="site-footer">
