@@ -84,6 +84,7 @@
 
       <section class="applications" aria-label="Listado de solicitudes">
         <table class="applications__table">
+          <caption class="applications__caption">Historial de solicitudes</caption>
           <colgroup class="applications__colgroup">
             <col class="applications__col applications__col--puesto">
             <col class="applications__col applications__col--empresa">
@@ -102,7 +103,7 @@
           </thead>
           <tbody class="applications__body">
             <tr class="applications__row">
-              <td class="applications__cell applications__cell--puesto">
+              <td class="applications__cell applications__cell--puesto" data-label="Puesto">
                 <div class="applications__job">
                   <span class="applications__job-title">Cajero / Atención en Mostrador</span>
                   <span class="tag">Tiempo completo</span>
@@ -110,11 +111,13 @@
               </td>
               <td class="applications__cell applications__cell--empresa" data-label="Empresa">Cadena Comercial OXXO</td>
               <td class="applications__cell applications__cell--fecha" data-label="Fecha de postulación"><time datetime="2026-11-19">19 Nov 2026</time></td>
-              <td class="applications__cell applications__cell--estado"><span class="status status--review">En revisión</span></td>
-              <td class="applications__cell applications__cell--accion"><a class="applications__action" href="vacante.html">Ver detalle</a></td>
+              <td class="applications__cell applications__cell--estado" data-label="Estado"><span class="status status--review">En revisión</span></td>
+              <td class="applications__cell applications__cell--accion" data-label="Acción"><a class="applications__action" href="vacante.html">Ver detalle</a>
+              <button type="button" class="boton-cancelar">Cancelar</button>
+              </td>
             </tr>
             <tr class="applications__row">
-              <td class="applications__cell applications__cell--puesto">
+              <td class="applications__cell applications__cell--puesto" data-label="Puesto">
                 <div class="applications__job">
                   <span class="applications__job-title">Asesor de Atención al Cliente</span>
                   <span class="tag">Tiempo completo</span>
@@ -122,11 +125,13 @@
               </td>
               <td class="applications__cell applications__cell--empresa" data-label="Empresa">Despacho Consultor Monterrey</td>
               <td class="applications__cell applications__cell--fecha" data-label="Fecha de postulación"><time datetime="2026-10-27">27 Oct 2026</time></td>
-              <td class="applications__cell applications__cell--estado"><span class="status status--interview">Entrevista agendada</span></td>
-              <td class="applications__cell applications__cell--accion"><a class="applications__action" href="#">Ver detalle</a></td>
+              <td class="applications__cell applications__cell--estado" data-label="Estado"><span class="status status--interview">Entrevista agendada</span></td>
+              <td class="applications__cell applications__cell--accion" data-label="Acción"><a class="applications__action" href="#">Ver detalle</a>
+              <button type="button" class="boton-cancelar">Cancelar</button>
+              </td>
             </tr>
             <tr class="applications__row">
-              <td class="applications__cell applications__cell--puesto">
+              <td class="applications__cell applications__cell--puesto" data-label="Puesto">
                 <div class="applications__job">
                   <span class="applications__job-title">Auxiliar de Almacén e Inventarios</span>
                   <span class="tag">Tiempo completo</span>
@@ -134,8 +139,10 @@
               </td>
               <td class="applications__cell applications__cell--empresa" data-label="Empresa">Logística y Distribución del Norte</td>
               <td class="applications__cell applications__cell--fecha" data-label="Fecha de postulación"><time datetime="2026-10-15">15 Oct 2026</time></td>
-              <td class="applications__cell applications__cell--estado"><span class="status status--rejected">No seleccionado</span></td>
-              <td class="applications__cell applications__cell--accion"><a class="applications__action" href="#">Ver detalle</a></td>
+              <td class="applications__cell applications__cell--estado" data-label="Estado"><span class="status status--rejected">No seleccionado</span></td>
+              <td class="applications__cell applications__cell--accion " data-label="Acción"><a class="applications__action" href="#">Ver detalle</a>
+              <button type="button" class="boton-cancelar">Cancelar</button>
+              </td> 
             </tr>
           </tbody>
         </table>
