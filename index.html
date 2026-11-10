@@ -3,72 +3,83 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AMAC | Bolsa De Trabajo – Vacantes Disponibles</title>
+  <title>Vacantes disponibles – AMAC | Bolsa de Trabajo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
 
-  <!-- Hojas de estilo del proyecto -->
+  <!-- Hojas de estilo del proyecto (el orden importa) -->
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/componentes.css">
-  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Menú móvil y mostrar contraseña. Va en el head para marcar <html class="js"> antes de pintar -->
+  <script src="js/main.js"></script>
 </head>
 <body>
+  <a class="skip-link" href="#principal">Saltar al contenido principal</a>
+
+  <!-- ===================== ENCABEZADO (idéntico en todas las páginas) ===================== -->
   <header class="site-header">
     <div class="site-header__inner">
-      <a class="site-header__brand" href="#">
-        <img class="site-header__logo" src="img/amac-logo.png" alt="AMAC | Bolsa De Trabajo" width="471" height="75">
+      <a class="site-header__brand" href="index.html">
+        <img class="site-header__logo" src="img/amac-logo.png" alt="AMAC Bolsa de Trabajo, ir al inicio" width="471" height="75">
       </a>
 
-      <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú de navegación">
+      <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="site-nav">
         <span class="site-header__toggle-bar"></span>
         <span class="site-header__toggle-bar"></span>
         <span class="site-header__toggle-bar"></span>
+        <span class="visually-hidden">Menú</span>
       </button>
 
       <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
         <ul class="site-nav__list">
           <li class="site-nav__item">
-            <a class="site-nav__link" href="#">
-              <img class="site-nav__icon" alt="Ícono de búsqueda" width="20" height="20"
-                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fafafa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E">
+            <a class="site-nav__link" href="index.html" aria-current="page">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
               Buscar Empleos
             </a>
           </li>
           <li class="site-nav__item">
-            <button class="site-nav__link" type="button">
-              Registro
-              <img class="site-nav__icon" alt="Flecha desplegable" width="20" height="20"
-                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fafafa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E">
-            </button>
+            <details class="site-nav__submenu">
+              <summary class="site-nav__link">
+                Registro
+                <svg class="icon site-nav__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
+              </summary>
+              <ul class="site-nav__sublist">
+                <li><a class="site-nav__sublink" href="registro-candidato.html">Soy candidato</a></li>
+              </ul>
+            </details>
           </li>
           <li class="site-nav__item">
-            <button class="site-nav__link" type="button">
+            <a class="site-nav__link" href="login.html">
               Iniciar Sesión
-              <img class="site-nav__icon site-nav__icon--user" alt="Ícono de usuario" width="24" height="24"
-                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fafafa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E">
-            </button>
+              <svg class="icon icon--lg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </a>
           </li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main class="page">
+  <main class="page" id="principal" tabindex="-1">
     <section class="page-intro" aria-labelledby="page-title">
       <h1 class="page-intro__title" id="page-title">Vacantes Disponibles</h1>
       <p class="page-intro__subtitle">Oportunidades verificadas y adaptadas para ti</p>
     </section>
 
-    <form class="search-panel" role="search" action="#" method="get">
+    <form class="search-panel" role="search" action="index.html" method="get">
       <div class="search-panel__row">
-        <label class="search-panel__field">
-          <span class="visually-hidden">Buscar vacantes</span>
-          <input class="search-panel__input" type="search" name="q" placeholder="Puesto, palabra clave o empresa">
-        </label>
-        <button class="search-panel__submit" type="submit">Buscar</button>
+        <div class="search-panel__field">
+          <label class="visually-hidden" for="busqueda">Buscar vacantes</label>
+          <div class="search-panel__control">
+            <svg class="icon search-panel__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input class="search-panel__input" id="busqueda" type="search" name="q" placeholder="Puesto, palabra clave o empresa">
+          </div>
+        </div>
+        <button class="btn btn--accent" type="submit">Buscar</button>
       </div>
 
       <div class="search-panel__filters">
@@ -78,8 +89,7 @@
             <select class="filter__select" id="filter-horario" name="horario">
               <option value="">Todos los horarios</option>
             </select>
-            <img class="filter__icon" alt="Flecha del selector" width="10" height="6"
-                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6' fill='none' stroke='%231c2033' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1l4 4 4-4'/%3E%3C/svg%3E">
+            <svg class="icon filter__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
           </div>
         </div>
 
@@ -89,8 +99,7 @@
             <select class="filter__select" id="filter-categoria" name="categoria">
               <option value="">Todas las categorías</option>
             </select>
-            <img class="filter__icon" alt="Flecha del selector" width="10" height="6"
-                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6' fill='none' stroke='%231c2033' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1l4 4 4-4'/%3E%3C/svg%3E">
+            <svg class="icon filter__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
           </div>
         </div>
 
@@ -100,8 +109,7 @@
             <select class="filter__select" id="filter-distancia" name="distancia">
               <option value="">Cualquier distancia</option>
             </select>
-            <img class="filter__icon" alt="Flecha del selector" width="10" height="6"
-                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6' fill='none' stroke='%231c2033' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1l4 4 4-4'/%3E%3C/svg%3E">
+            <svg class="icon filter__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
           </div>
         </div>
       </div>
@@ -112,76 +120,80 @@
         <div class="job-card__body">
           <h3 class="job-card__title">Cajero / Atención en Mostrador</h3>
           <p class="job-card__company">Cadena Comercial OXXO</p>
-          <p class="job-card__salary"><span><strong class="job-card__salary-amount">$7,500 netos al mes</strong> (Prestaciones de ley)</span></p>
+          <p class="job-card__salary"><strong class="job-card__salary-amount">$7,500 netos al mes</strong> (Prestaciones de ley)</p>
           <p class="job-card__meta">Guadalupe, Nuevo León • Lunes a Viernes, 8:00 AM a 4:00 PM</p>
         </div>
-        <a class="job-card__action" href="#">Ver detalle</a>
+        <a class="btn" href="#">Ver detalle</a>
       </article>
 
       <article class="job-card">
         <div class="job-card__body">
           <h3 class="job-card__title">Asesor de Atención al Cliente</h3>
           <p class="job-card__company">Grupo Financiero Banorte</p>
-          <p class="job-card__salary"><span><strong class="job-card__salary-amount">$8,200 netos al mes</strong> (Prestaciones de ley)</span></p>
+          <p class="job-card__salary"><strong class="job-card__salary-amount">$8,200 netos al mes</strong> (Prestaciones de ley)</p>
           <p class="job-card__meta">Monterrey, Zona Centro • Lunes a Viernes, 7:00 AM a 3:00 PM</p>
         </div>
-        <a class="job-card__action" href="#">Ver detalle</a>
+        <a class="btn" href="#">Ver detalle</a>
       </article>
 
-      <article class="job-card job-card--offset">
+      <article class="job-card">
         <div class="job-card__body">
           <h3 class="job-card__title">Recepcionista y Atención Telefónica</h3>
           <p class="job-card__company">Despacho Consultor Monterrey</p>
-          <p class="job-card__salary"><span><strong class="job-card__salary-amount">$9,200 netos al mes</strong> (Prestaciones de ley)</span></p>
+          <p class="job-card__salary"><strong class="job-card__salary-amount">$9,200 netos al mes</strong> (Prestaciones de ley)</p>
           <p class="job-card__meta">Monterrey, Obispado • Lunes a Viernes, 9:00 AM a 5:00 PM</p>
         </div>
-        <a class="job-card__action" href="#">Ver detalle</a>
+        <a class="btn" href="#">Ver detalle</a>
       </article>
 
       <article class="job-card">
         <div class="job-card__body">
           <h3 class="job-card__title">Auxiliar de Almacén e Inventarios</h3>
           <p class="job-card__company">Logística y Distribución del Norte</p>
-          <p class="job-card__salary"><span><strong class="job-card__salary-amount">$10,000 netos al mes</strong> (Pago quincenal)</span></p>
+          <p class="job-card__salary"><strong class="job-card__salary-amount">$10,000 netos al mes</strong> (Pago quincenal)</p>
           <p class="job-card__meta">San Nicolás • Lunes a Sábado, 7:00 AM a 4:00 PM</p>
         </div>
-        <a class="job-card__action" href="#">Ver detalle</a>
+        <a class="btn" href="#">Ver detalle</a>
       </article>
     </section>
-
-    <a class="help-fab" href="tel:">
-      <img class="help-fab__icon" alt="Ayuda / Llamar" width="20" height="20"
-           src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'/%3E%3C/svg%3E">
-    </a>
   </main>
 
-  <script>
-    (function () {
-      var toggle = document.querySelector('.site-header__toggle');
-      var nav = document.getElementById('site-nav');
-      var mq = window.matchMedia('(max-width: 1024px)');
+  <!-- ===================== BOTÓN DE AYUDA / LLAMAR A AMAC (RF-052) ===================== -->
+  <!-- TODO: reemplazar por el teléfono real de AMAC -->
+  <a class="help-fab" href="tel:+528100000000">
+    <svg class="icon help-fab__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    <span class="visually-hidden">Llamar a AMAC para pedir ayuda</span>
+  </a>
 
-      function setOpen(open) {
-        toggle.setAttribute('aria-expanded', String(open));
-        toggle.setAttribute('aria-label', open ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
-        nav.classList.toggle('site-nav--open', open);
-      }
+  <!-- ===================== PIE DE PÁGINA (idéntico en todas las páginas) ===================== -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <section aria-labelledby="footer-amac">
+        <h2 class="site-footer__title" id="footer-amac">AMAC | Bolsa de Trabajo</h2>
+        <p class="site-footer__text">Empleos verificados y adaptados para adultos mayores en Monterrey y su área metropolitana.</p>
+      </section>
 
-      toggle.addEventListener('click', function () {
-        setOpen(toggle.getAttribute('aria-expanded') !== 'true');
-      });
+      <nav aria-labelledby="footer-enlaces">
+        <h2 class="site-footer__title" id="footer-enlaces">Enlaces</h2>
+        <ul class="site-footer__list">
+          <li><a class="site-footer__link" href="index.html">Buscar empleos</a></li>
+          <li><a class="site-footer__link" href="mis-solicitudes.html">Mis solicitudes</a></li>
+          <li><a class="site-footer__link" href="empresa-vacantes.html">Panel de empresa</a></li>
+          <li><a class="site-footer__link" href="login.html">Iniciar sesión</a></li>
+        </ul>
+      </nav>
 
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
-          setOpen(false);
-          toggle.focus();
-        }
-      });
+      <section aria-labelledby="footer-contacto">
+        <h2 class="site-footer__title" id="footer-contacto">Contacto</h2>
+        <!-- TODO: reemplazar por el teléfono y correo reales -->
+        <address class="site-footer__contact">
+          <a class="site-footer__link" href="tel:+528100000000">81 0000 0000</a><br>
+          <a class="site-footer__link" href="mailto:contacto@amac.mx">contacto@amac.mx</a>
+        </address>
+      </section>
 
-      mq.addEventListener('change', function (e) {
-        if (!e.matches) setOpen(false);
-      });
-    })();
-  </script>
+      <p class="site-footer__legal">© 2026 AMAC | Bolsa de Trabajo. Proyecto académico, Universidad de Monterrey.</p>
+    </div>
+  </footer>
 </body>
 </html>
