@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Rutas absolutas (/css/...): esta página se muestra en cualquier dirección que no exista -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="La página que buscas no existe en AMAC | Bolsa de Trabajo.">
+  <meta name="theme-color" content="#003366">
+  <title>Página no encontrada – AMAC | Bolsa de Trabajo</title>
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+
+  <!-- Hojas de estilo del proyecto (el orden importa) -->
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/componentes.css">
+
+  <!-- Menú móvil y mostrar contraseña. Va en el head para marcar <html class="js"> antes de pintar -->
+  <script src="/js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#principal">Saltar al contenido principal</a>
+
+  <!-- ===================== ENCABEZADO (idéntico en todas las páginas) ===================== -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-header__brand" href="/index.html">
+        <img class="site-header__logo" src="/img/amac-logo.png" alt="AMAC Bolsa de Trabajo, ir al inicio" width="442" height="75">
+      </a>
+
+      <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="site-header__toggle-bar"></span>
+        <span class="site-header__toggle-bar"></span>
+        <span class="site-header__toggle-bar"></span>
+        <span class="visually-hidden">Menú</span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+        <ul class="site-nav__list">
+          <li class="site-nav__item">
+            <a class="site-nav__link" href="/index.html">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              Buscar Empleos
+            </a>
+          </li>
+          <li class="site-nav__item">
+            <details class="site-nav__submenu">
+              <summary class="site-nav__link">
+                Registro
+                <svg class="icon site-nav__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
+              </summary>
+              <ul class="site-nav__sublist">
+                <li><a class="site-nav__sublink" href="/registro-candidato.html">Registrar candidato</a></li>
+                <li><a class="site-nav__sublink" href="/registro-empresa.html">Registrar empresa</a></li>
+              </ul>
+            </details>
+          </li>
+          <li class="site-nav__item">
+            <details class="site-nav__submenu">
+              <summary class="site-nav__link">
+                Iniciar Sesión
+                <svg class="icon icon--lg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </summary>
+              <ul class="site-nav__sublist">
+                <li><a class="site-nav__sublink" href="/login.html">Iniciar sesión como candidato</a></li>
+                <li><a class="site-nav__sublink" href="/login-empresa.html">Iniciar sesión como empresa</a></li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page page--narrow" id="principal" tabindex="-1">
+    <section class="error-page" aria-labelledby="error-title">
+      <p class="error-page__code" aria-hidden="true">404</p>
+      <h1 class="error-page__title" id="error-title">No encontramos esta página</h1>
+      <p class="error-page__text">Es posible que el enlace esté mal escrito o que la página ya no exista. Puede regresar a las vacantes o llamarnos y con gusto le ayudamos.</p>
+      <div class="error-page__actions">
+        <a class="btn btn--lg" href="/index.html">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          Ver vacantes disponibles
+        </a>
+        <a class="btn btn--outline btn--lg" href="tel:+528100000000">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Llamar a AMAC
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== BOTÓN DE AYUDA / LLAMAR A AMAC (RF-052) ===================== -->
+  <!-- TODO: reemplazar por el teléfono real de AMAC -->
+  <aside class="help" aria-label="Ayuda telefónica">
+    <a class="help-fab" href="tel:+528100000000">
+      <svg class="icon help-fab__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span class="visually-hidden">Llamar a AMAC para pedir ayuda</span>
+    </a>
+  </aside>
+
+  <!-- ===================== PIE DE PÁGINA (idéntico en todas las páginas) ===================== -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <section aria-labelledby="footer-amac">
+        <h2 class="site-footer__title" id="footer-amac">AMAC | Bolsa de Trabajo</h2>
+        <p class="site-footer__text">Empleos verificados y adaptados para adultos mayores en Monterrey y su área metropolitana.</p>
+      </section>
+
+      <nav aria-labelledby="footer-enlaces">
+        <h2 class="site-footer__title" id="footer-enlaces">Enlaces</h2>
+        <ul class="site-footer__list">
+          <li><a class="site-footer__link" href="/index.html">Buscar empleos</a></li>
+          <li><a class="site-footer__link" href="/mis-solicitudes.html">Mis solicitudes</a></li>
+          <li><a class="site-footer__link" href="/empresa-vacantes.html">Panel de empresa</a></li>
+          <li><a class="site-footer__link" href="/login.html">Iniciar sesión</a></li>
+        </ul>
+      </nav>
+
+      <section aria-labelledby="footer-contacto">
+        <h2 class="site-footer__title" id="footer-contacto">Contacto</h2>
+        <!-- TODO: reemplazar por el teléfono y correo reales -->
+        <address class="site-footer__contact">
+          <a class="site-footer__link" href="tel:+528100000000">81 0000 0000</a><br>
+          <a class="site-footer__link" href="mailto:contacto@amac.mx">contacto@amac.mx</a>
+        </address>
+      </section>
+
+      <section class="site-footer__a11y" aria-labelledby="footer-accesibilidad">
+        <h2 class="site-footer__title" id="footer-accesibilidad">Accesibilidad</h2>
+        <!-- Modo alto contraste: el botón aparece solo con JavaScript (js/main.js) -->
+        <button class="contrast-toggle" type="button" aria-pressed="false" hidden>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 18a6 6 0 0 0 0-12v12z"/></svg>
+          Alto contraste
+        </button>
+      </section>
+
+      <p class="site-footer__legal">© 2026 AMAC | Bolsa de Trabajo. Proyecto académico, Universidad de Monterrey.</p>
+    </div>
+  </footer>
+</body>
+</html>
