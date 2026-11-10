@@ -1,243 +1,1021 @@
 /* ==========================================================================
-   AMAC | Bolsa de Trabajo - componentes.css
-   Piezas reutilizables:
-   Botones, etiquetas de estatus, estadísticas, campos de formulario y avisos.
+   AMAC | Bolsa de Trabajo · componentes.css
+   Piezas reutilizables. Cada bloque será un componente de React en la
+   Entrega 3 (el nombre sugerido va en el título de cada sección).
+   Mobile-first: estilos base para celular + media queries con min-width.
 
-   Reglas de este archivo:
-   - Usa exclusivamente las variables de variables.css.
-   - Todo se construye mobile-first.
-
+    1. Ícono .................... <Icono />
+    2. Botón .................... <Boton />
+    3. Etiqueta y estatus ....... <Etiqueta /> <EtiquetaEstatus />
+    4. Estadísticas ............. <Estadistica />
+    5. Campo de formulario ...... <CampoFormulario />
+    6. Aviso con casilla ........ <AvisoTerminos />
+    7. Buscador y filtros ....... <Buscador /> <Filtro />
+    8. Tarjeta de vacante ....... <TarjetaVacante />
+    9. Detalle de vacante ....... <DetalleVacante />
+   10. Tarjeta de autenticación . <FormularioAuth />
+   11. Tabla de datos ........... <TablaDatos />
+   12. Nota informativa ......... <NotaInfo />
+   13. Enlace de ayuda .......... <EnlaceAyuda />
    ========================================================================== */
 
-/* ------------------------------------------------------------------------
-   1. BOTONES
-   ------------------------------------------------------------------------ */
+/* ==========================================================================
+   1. Ícono (SVG en línea, toma el color del texto)
+   ========================================================================== */
+.icon {
+  flex-shrink: 0;
+  width: var(--tamano-icono);
+  height: var(--tamano-icono);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 
-.boton {
+.icon--lg {
+  width: var(--tamano-icono-lg);
+  height: var(--tamano-icono-lg);
+}
+
+/* ==========================================================================
+   2. Botón
+   Colores según la decisión de diseño #3:
+   azul = consultar, naranja = acción importante, verde = aceptar, rojo = rechazar.
+   Sirve igual en <a> y en <button>.
+   ========================================================================== */
+.btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: var(--espacio-2);
+  min-width: var(--tactil-min);
   min-height: var(--alto-boton);
-  padding: var(--espacio-2) var(--espacio-4);
-  font-family: var(--fuente-base);
+  padding: var(--espacio-2) var(--espacio-6);
   font-size: var(--texto-base);
   font-weight: var(--peso-seminegrita);
   line-height: var(--interlineado-compacto);
+  color: var(--color-texto-inverso);
   text-align: center;
   text-decoration: none;
-  border: var(--grosor-borde) solid transparent;
-  border-radius: var(--radio-md);
-  cursor: pointer;
-  transition: background-color var(--transicion), box-shadow var(--transicion);
-  gap: var(--espacio-2);
-}
-
-.boton:focus-visible {
-  outline: var(--grosor-foco) solid var(--color-foco);
-  outline-offset: var(--separacion-foco);
-}
-
-.boton--primario {
   background-color: var(--color-primario);
-  color: var(--color-texto-inverso);
-  box-shadow: var(--sombra-boton-primario);
+  border: 2px solid transparent;
+  border-radius: var(--radio-md);
+  transition: background-color var(--transicion), box-shadow var(--transicion);
 }
 
-.boton--primario:hover {
+.btn:hover {
   background-color: var(--color-primario-oscuro);
 }
 
-.boton--accion {
+.btn--accent {
   background-color: var(--color-accion);
-  color: var(--color-texto-inverso);
-  box-shadow: var(--sombra-boton-accion);
 }
 
-.boton--accion:hover {
+.btn--accent:hover {
   background-color: var(--color-accion-oscuro);
 }
 
-.boton--secundario {
-  background-color: transparent;
+.btn--success {
+  background-color: var(--color-exito);
+}
+
+.btn--danger {
+  background-color: var(--color-peligro);
+}
+
+.btn--success:hover,
+.btn--danger:hover {
+  filter: brightness(0.9);
+}
+
+/* Contorno: "Regresar al listado", acciones secundarias */
+.btn--outline {
   color: var(--color-primario);
+  background-color: transparent;
   border-color: var(--color-primario);
 }
 
-.boton--secundario:hover {
-  background-color: var(--color-panel);
+.btn--outline:hover {
+  color: var(--color-texto-inverso);
+  background-color: var(--color-primario);
 }
 
-.boton:disabled,
-.boton--deshabilitado {
+/* Botón grande: Postularme, Entrar, Completar registro */
+.btn--lg {
+  min-height: 3.5rem;
+  padding: var(--espacio-4) var(--espacio-8);
+  font-size: var(--texto-md);
+  font-weight: var(--peso-negrita);
+}
+
+.btn--accent.btn--lg {
+  box-shadow: var(--sombra-boton-accion);
+}
+
+.btn--block {
+  display: flex;
+  width: 100%;
+}
+
+/* Deshabilitado: se usa con aria-disabled="true" en <a>/<span>
+   o con el atributo disabled en <button> */
+.btn--disabled,
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  color: var(--color-texto-celda);
   background-color: var(--color-deshabilitado);
-  color: var(--color-texto-suave);
-  border-color: transparent;
   box-shadow: none;
-  cursor: not-allowed;
   pointer-events: none;
 }
 
-/* ------------------------------------------------------------------------
-   2. ETIQUETAS DE ESTATUS
-   ------------------------------------------------------------------------ */
-
-.etiqueta {
+/* ==========================================================================
+   3. Etiqueta ("Tiempo completo") y estatus de solicitud / vacante
+   ========================================================================== */
+.tag,
+.status {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   padding: var(--espacio-1) var(--espacio-3);
   font-size: var(--texto-sm);
   font-weight: var(--peso-medio);
   line-height: var(--interlineado-compacto);
   border-radius: var(--radio-pildora);
-  white-space: nowrap;
 }
 
-.etiqueta--revision {
-  background-color: var(--estatus-revision-fondo);
+.tag {
   color: var(--estatus-revision-texto);
+  background-color: var(--estatus-revision-fondo);
 }
 
-.etiqueta--exito {
-  background-color: var(--estatus-exito-fondo);
-  color: var(--estatus-exito-texto);
-}
-
-.etiqueta--error {
-  background-color: var(--estatus-error-fondo);
-  color: var(--estatus-error-texto);
-}
-
-/* ------------------------------------------------------------------------
-   3. ESTADÍSTICAS
-   ------------------------------------------------------------------------ */
-
-.estadisticas {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--espacio-4);
-  margin-block-end: var(--espacio-8);
-}
-
-.estadistica {
-  background-color: var(--color-superficie);
-  padding: var(--espacio-5);
-  border-radius: var(--radio-md);
-  box-shadow: var(--sombra-estadistica);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: var(--espacio-2);
-}
-
-.estadistica__valor {
-  font-size: var(--texto-3xl);
-  font-weight: var(--peso-negrita);
-  color: var(--color-primario);
-  line-height: var(--interlineado-titulos);
-}
-
-.estadistica__etiqueta {
-  font-size: var(--texto-base);
-  color: var(--color-texto-suave);
-  margin: 0;
-}
-
-/* ------------------------------------------------------------------------
-   4. CAMPOS DE FORMULARIO
-   ------------------------------------------------------------------------ */
-
-.campo {
-  display: flex;
-  flex-direction: column;
-  gap: var(--espacio-2);
-  margin-block-end: var(--espacio-5);
-}
-
-.campo__label {
+.status {
+  padding: var(--espacio-2) var(--espacio-4);
   font-size: var(--texto-base);
   font-weight: var(--peso-seminegrita);
+  text-align: center;
+}
+
+/* Los nombres de Figma (review/warning, interview/success, rejected/danger)
+   comparten una sola paleta para no repetir colores */
+.status--review,
+.status--warning {
+  color: var(--estatus-revision-texto);
+  background-color: var(--estatus-revision-fondo);
+}
+
+.status--interview,
+.status--success {
+  color: var(--estatus-exito-texto);
+  background-color: var(--estatus-exito-fondo);
+}
+
+.status--rejected,
+.status--danger {
+  color: var(--estatus-error-texto);
+  background-color: var(--estatus-error-fondo);
+}
+
+/* ==========================================================================
+   4. Estadísticas (Mis solicitudes, Panel de empresa)
+   ========================================================================== */
+.stats {
+  display: grid;
+  /* 1 columna en 320 px, 2 desde ~360 px: nunca corta palabras a la mitad */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr));
+  gap: var(--espacio-4);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-1);
+  padding: var(--espacio-4);
+  background-color: var(--color-superficie);
+  border: var(--grosor-borde) solid var(--color-borde);
+  border-radius: var(--radio-lg);
+  box-shadow: var(--sombra-estadistica);
+}
+
+.stat__value {
+  font-size: var(--texto-3xl);
+  font-weight: var(--peso-negrita);
+  line-height: var(--interlineado-titulos);
+  color: var(--color-primario);
+}
+
+.stat__value--accent  { color: var(--color-accion); }
+.stat__value--success { color: var(--color-exito); }
+.stat__value--danger  { color: var(--color-peligro); }
+
+.stat__label {
+  line-height: var(--interlineado-compacto);
+  color: var(--color-texto-suave);
+}
+
+@media (min-width: 64em) {
+  .stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--espacio-5);
+  }
+
+  .stat {
+    padding: var(--espacio-5);
+  }
+}
+
+/* ==========================================================================
+   5. Campo de formulario (label + control con ícono + ayudas)
+   ========================================================================== */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2);
+}
+
+.field__label-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espacio-1) var(--espacio-4);
+}
+
+.field__label {
+  font-weight: var(--peso-seminegrita);
+  line-height: var(--interlineado-compacto);
   color: var(--color-texto-fuerte);
 }
 
-.campo__control {
-  width: 100%;
+/* "¿Olvidaste tu contraseña?" */
+.field__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tactil-min);
+  font-weight: var(--peso-medio);
+  color: var(--color-accion);
+}
+
+.field__hint,
+.field__note {
+  font-size: var(--texto-sm);
+  line-height: var(--interlineado-base);
+  color: var(--color-texto-celda);
+}
+
+/* Caja que contiene ícono + input (+ botón de ver contraseña) */
+.field__control {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-2);
   min-height: var(--alto-campo);
-  padding: var(--espacio-2) var(--espacio-3);
-  font-family: var(--fuente-base);
-  font-size: var(--texto-base);
-  color: var(--color-texto);
+  padding-inline: var(--espacio-4) var(--espacio-1);
   background-color: var(--color-superficie);
   border: var(--grosor-borde) solid var(--color-borde-campo);
   border-radius: var(--radio-md);
-  transition: border-color var(--transicion), box-shadow var(--transicion);
 }
 
-.campo__control::placeholder {
+/* El anillo de foco se dibuja en la caja completa, no solo en el input */
+.field__control:focus-within {
+  outline: var(--grosor-foco) solid var(--color-foco);
+  outline-offset: var(--separacion-foco);
+}
+
+.field__icon {
   color: var(--color-texto-placeholder);
 }
 
-.campo__control:focus-visible {
-  outline: var(--grosor-foco) solid var(--color-foco);
-  outline-offset: var(--separacion-foco);
-  border-color: var(--color-primario);
+.field__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: calc(var(--alto-campo) - 2px);
+  padding: 0 var(--espacio-3) 0 0;
+  color: var(--color-texto-fuerte);
+  background: transparent;
+  border: 0;
 }
 
-.campo__control:disabled {
-  background-color: var(--color-fondo);
-  color: var(--color-texto-suave);
-  cursor: not-allowed;
+.field__input:focus-visible {
+  outline: none;               /* el foco ya lo muestra .field__control */
 }
 
-textarea.campo__control {
-  min-height: var(--alto-textarea);
-  resize: vertical;
-}
-
-.campo__ayuda {
-  font-size: var(--texto-sm);
-  color: var(--color-texto-suave);
-  margin: 0;
-}
-
-/* ------------------------------------------------------------------------
-   5. AVISOS Y ALERTAS
-   ------------------------------------------------------------------------ */
-
-.aviso {
-  display: flex;
-  gap: var(--espacio-3);
-  padding: var(--espacio-4);
-  border-radius: var(--radio-md);
-  margin-block-end: var(--espacio-6);
-  font-size: var(--texto-base);
-  line-height: var(--interlineado-base);
-  border-left: 4px solid transparent;
-}
-
-.aviso__titulo {
-  font-weight: var(--peso-negrita);
+.field__textarea {
   display: block;
-  margin-block-end: var(--espacio-1);
+  width: 100%;
+  min-height: var(--alto-textarea);
+  padding: var(--espacio-3) var(--espacio-4);
+  color: var(--color-texto-fuerte);
+  background-color: var(--color-superficie);
+  border: var(--grosor-borde) solid var(--color-borde-campo);
+  border-radius: var(--radio-md);
 }
 
-.aviso--info {
-  background-color: var(--color-panel);
-  border-left-color: var(--color-primario);
-  color: var(--color-texto);
+/* Botón de mostrar / ocultar contraseña: área táctil de 44 × 44 px */
+.field__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--tactil-min);
+  height: var(--tactil-min);
+  padding: 0;
+  color: var(--color-texto-celda);
+  background: none;
+  border: 0;
+  border-radius: var(--radio-md);
 }
 
-.aviso--info .aviso__titulo {
+.field__toggle-icon--hide,
+.field__toggle[aria-pressed="true"] .field__toggle-icon--show {
+  display: none;
+}
+
+.field__toggle[aria-pressed="true"] .field__toggle-icon--hide {
+  display: block;
+}
+
+/* Grupo de campos con título (Datos personales, Dirección...) */
+.fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-5);
+}
+
+.fieldset__legend {
+  margin-bottom: var(--espacio-2);
+  font-size: var(--texto-xl);
+  font-weight: var(--peso-negrita);
   color: var(--color-primario);
 }
 
-.aviso--exito {
-  background-color: var(--estatus-exito-fondo);
-  border-left-color: var(--color-exito);
-  color: var(--estatus-exito-texto);
+/* ==========================================================================
+   6. Aviso con casilla (aceptar términos)
+   ========================================================================== */
+.notice {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--espacio-3);
+  padding: var(--espacio-4);
+  background-color: var(--color-aviso);
+  border: var(--grosor-borde) solid var(--color-borde);
+  border-radius: var(--radio-md);
 }
 
-.aviso--error {
-  background-color: var(--estatus-error-fondo);
-  border-left-color: var(--color-peligro);
-  color: var(--estatus-error-texto);
+/* Casilla de 24 px con área de toque ampliada por el <label> completo */
+.notice__checkbox {
+  display: grid;
+  place-content: center;
+  flex-shrink: 0;
+  width: var(--tamano-casilla);
+  height: var(--tamano-casilla);
+  margin-top: 0.125rem;
+  background-color: var(--color-superficie);
+  border: 2px solid var(--color-borde-campo);
+  border-radius: var(--radio-sm);
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.notice__checkbox::before {
+  content: "";
+  width: 0.75rem;
+  height: 0.625rem;
+  background-color: var(--color-texto-inverso);
+  clip-path: polygon(14% 44%, 0 59%, 39% 100%, 100% 21%, 86% 6%, 39% 70%);
+  transform: scale(0);
+  transition: transform var(--transicion);
+}
+
+.notice__checkbox:checked {
+  background-color: var(--color-primario);
+  border-color: var(--color-primario);
+}
+
+.notice__checkbox:checked::before {
+  transform: scale(1);
+}
+
+.notice__text {
+  flex: 1 1 0;
+  min-width: 0;
+  color: var(--color-texto-suave);
+}
+
+.notice__link {
+  font-weight: var(--peso-negrita);
+}
+
+/* ==========================================================================
+   7. Buscador y filtros (index.html)
+   ========================================================================== */
+.search-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-4);
+  padding: var(--espacio-4);
+  background-color: var(--color-panel);
+  border: var(--grosor-borde) solid var(--color-borde);
+  border-radius: var(--radio-lg);
+  box-shadow: var(--sombra-tarjeta);
+}
+
+.search-panel__row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-3);
+}
+
+.search-panel__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.search-panel__control {
+  position: relative;
+}
+
+.search-panel__icon {
+  position: absolute;
+  top: 50%;
+  left: var(--espacio-4);
+  color: var(--color-texto-placeholder);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.search-panel__input {
+  display: block;
+  width: 100%;
+  min-height: var(--alto-campo);
+  padding: 0 var(--espacio-4) 0 var(--espacio-12);
+  color: var(--color-texto-fuerte);
+  background-color: var(--color-superficie);
+  border: var(--grosor-borde) solid var(--color-borde-campo);
+  border-radius: var(--radio-md);
+}
+
+.search-panel__filters {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--espacio-4);
+  padding-top: var(--espacio-4);
+  border-top: var(--grosor-borde) solid var(--color-borde-suave);
+}
+
+@media (min-width: 48em) {
+  .search-panel {
+    gap: var(--espacio-6);
+    padding: var(--espacio-6);
+  }
+
+  .search-panel__row {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: var(--espacio-4);
+  }
+
+  .search-panel__row .btn {
+    min-height: var(--alto-campo);
+    padding-inline: var(--espacio-8);
+  }
+
+  .search-panel__filters {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--espacio-6);
+  }
+}
+
+/* Filtro: label + select con flecha propia */
+.filter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2);
+}
+
+.filter__label {
+  font-weight: var(--peso-seminegrita);
+  line-height: var(--interlineado-compacto);
+  color: var(--color-texto);
+}
+
+.filter__control {
+  position: relative;
+}
+
+.filter__select {
+  display: block;
+  width: 100%;
+  min-height: var(--alto-boton);
+  padding: 0 var(--espacio-10) 0 var(--espacio-4);
+  color: var(--color-texto-fuerte);
+  background-color: var(--color-campo-select);
+  border: var(--grosor-borde) solid var(--color-borde-campo);
+  border-radius: var(--radio-md);
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.filter__icon {
+  position: absolute;
+  top: 50%;
+  right: var(--espacio-3);
+  color: var(--color-texto-fuerte);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   8. Tarjeta de vacante (index.html)
+   ========================================================================== */
+.job-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-6);
+}
+
+.job-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-4);
+  padding: var(--espacio-5);
+  background-color: var(--color-superficie);
+  border: var(--grosor-borde) solid var(--color-borde);
+  border-radius: var(--radio-lg);
+  box-shadow: var(--sombra-tarjeta);
+}
+
+.job-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2);
+  min-width: 0;
+}
+
+.job-card__title {
+  font-size: var(--texto-xl);
+  color: var(--color-texto-fuerte);
+}
+
+.job-card__company {
+  font-weight: var(--peso-medio);
+  color: var(--color-texto-suave);
+}
+
+.job-card__salary {
+  padding-top: var(--espacio-1);
+}
+
+.job-card__salary-amount {
+  color: var(--color-texto-fuerte);
+}
+
+@media (min-width: 48em) {
+  .job-list {
+    gap: var(--espacio-8);
+  }
+
+  .job-card {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--espacio-6);
+    padding: var(--espacio-6);
+  }
+
+  .job-card .btn {
+    flex-shrink: 0;
+  }
+}
+
+/* ==========================================================================
+   9. Detalle de vacante (vacante.html)
+   ========================================================================== */
+.back-link {
+  align-self: flex-start;
+}
+
+.job-detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-6);
+  padding: var(--espacio-5);
+  background-color: var(--color-panel);
+  border: var(--grosor-borde) solid var(--color-borde-suave);
+  border-radius: var(--radio-lg);
+  box-shadow: var(--sombra-tarjeta);
+}
+
+.job-detail__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2);
+}
+
+.job-detail__title {
+  font-size: var(--texto-4xl);
+  color: var(--color-texto-titulo);
+}
+
+.job-detail__company {
+  font-size: var(--texto-lg);
+  font-weight: var(--peso-medio);
+  color: var(--color-texto-titulo);
+}
+
+/* Lista de datos: Ubicación, Horario, Salario */
+.job-detail__info {
+  overflow: hidden;
+  background-color: var(--color-panel-info);
+  border: var(--grosor-borde) solid var(--color-borde-suave);
+  border-radius: var(--radio-md);
+}
+
+.job-detail__info-row {
+  padding: var(--espacio-3) var(--espacio-4);
+  color: var(--color-texto-titulo);
+}
+
+.job-detail__info-row + .job-detail__info-row {
+  border-top: var(--grosor-borde) solid var(--color-borde-suave);
+}
+
+.job-detail__info-label {
+  display: inline;
+  font-weight: var(--peso-negrita);
+}
+
+.job-detail__info-value {
+  display: inline;
+}
+
+.job-detail__divider {
+  height: 1px;
+  background-color: var(--color-borde-suave);
+  border: 0;
+}
+
+.job-detail__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-4);
+}
+
+.job-detail__section-title {
+  font-size: var(--texto-2xl);
+  color: var(--color-texto-titulo);
+}
+
+.job-detail__text {
+  line-height: var(--interlineado-amplio);
+  color: var(--color-texto-titulo);
+}
+
+.job-detail__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-4);
+}
+
+@media (min-width: 48em) {
+  .job-detail {
+    gap: var(--espacio-8);
+    padding: var(--espacio-8);
+  }
+
+  .job-detail__info-row {
+    padding: var(--espacio-4) var(--espacio-6);
+  }
+
+  .job-detail__actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 64em) {
+  .job-detail {
+    padding: var(--espacio-10);
+  }
+}
+
+/* Lista de requisitos con viñetas de color */
+.requirements {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-3);
+}
+
+.requirements__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--espacio-3);
+  line-height: var(--interlineado-base);
+  color: var(--color-texto-titulo);
+}
+
+.requirements__item::before {
+  content: "";
+  flex-shrink: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top: 0.6em;
+  background-color: var(--color-accion-suave);
+  border-radius: var(--radio-circulo);
+}
+
+/* ==========================================================================
+   10. Tarjeta de autenticación (login.html, registro-candidato.html)
+   ========================================================================== */
+.auth {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--espacio-4);
+}
+
+.auth-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-6);
+  padding: var(--espacio-6) var(--espacio-5);
+  background-color: var(--color-superficie);
+  border: var(--grosor-borde) solid var(--color-borde);
+  border-radius: var(--radio-lg);
+  box-shadow: var(--sombra-tarjeta);
+}
+
+.auth-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-3);
+  text-align: center;
+}
+
+.auth-card__title {
+  color: var(--color-primario);
+}
+
+.auth-card__subtitle {
+  color: var(--color-texto-suave);
+}
+
+.auth-card__fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-5);
+}
+
+/* "¿Aún no tienes cuenta? Regístrate aquí" */
+.auth-card__switch {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0 var(--espacio-2);
+  text-align: center;
+}
+
+.auth-card__switch-text {
+  color: var(--color-texto-suave);
+}
+
+.auth-card__switch-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tactil-min);
+  font-weight: var(--peso-negrita);
+  color: var(--color-accion);
+}
+
+@media (min-width: 48em) {
+  .auth-card {
+    gap: var(--espacio-8);
+    padding: var(--espacio-12);
+  }
+}
+
+/* ==========================================================================
+   11. Tabla de datos (mis-solicitudes.html, empresa-vacantes.html)
+   Celular y tablet: cada fila se ve como tarjeta con etiquetas (data-label).
+   Escritorio (64em+): tabla normal.
+   ========================================================================== */
+.panel {
+  overflow: hidden;
+  background-color: var(--color-superficie);
+  border: var(--grosor-borde) solid var(--color-borde);
+  border-radius: var(--radio-lg);
+  box-shadow: var(--sombra-tabla);
+}
+
+.data-table__caption {
+  padding: var(--espacio-4) var(--espacio-5);
+  font-size: var(--texto-xl);
+  font-weight: var(--peso-negrita);
+  color: var(--color-primario);
+  text-align: left;
+}
+
+/* ---- Vista de tarjetas (base, celular) ---- */
+.data-table__head {
+  display: none;
+}
+
+.data-table,
+.data-table__body,
+.data-table__row,
+.data-table__cell {
+  display: block;
+}
+
+.data-table__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--espacio-3);
+  padding: var(--espacio-4);
+  border-top: var(--grosor-borde) solid var(--color-borde);
+}
+
+.data-table__row:nth-child(even) {
+  background-color: var(--color-superficie-alterna);
+}
+
+.data-table__cell {
+  color: var(--color-texto-celda);
+}
+
+.data-table__cell[data-label]::before {
+  content: attr(data-label);
+  display: block;
+  font-weight: var(--peso-negrita);
+  color: var(--color-primario);
+}
+
+.data-table__cell--status .status {
+  display: inline-flex;
+}
+
+.data-table__cell--action .btn {
+  width: 100%;
+}
+
+.data-table__primary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--espacio-1);
+}
+
+.data-table__title {
+  font-weight: var(--peso-negrita);
+  color: var(--color-texto-fuerte);
+}
+
+/* Tablet: dos columnas de datos, acción a la derecha */
+@media (min-width: 48em) {
+  .data-table__row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--espacio-4) var(--espacio-6);
+    padding: var(--espacio-5) var(--espacio-6);
+  }
+
+  .data-table__cell--primary {
+    grid-column: 1 / -1;
+  }
+
+  .data-table__cell--status {
+    grid-column: 1 / 3;
+  }
+
+  .data-table__cell--action {
+    grid-column: 3;
+    grid-row: 3;
+  }
+
+  .data-table__cell--action .btn {
+    width: auto;
+  }
+}
+
+/* ---- Vista de tabla (escritorio) ---- */
+@media (min-width: 64em) {
+  .data-table {
+    display: table;
+  }
+
+  .data-table__head {
+    display: table-header-group;
+    background-color: var(--color-primario);
+  }
+
+  .data-table__head--light {
+    background-color: var(--color-subencabezado);
+  }
+
+  .data-table__body {
+    display: table-row-group;
+  }
+
+  .data-table__row {
+    display: table-row;
+    padding: 0;
+  }
+
+  .data-table__th,
+  .data-table__cell {
+    display: table-cell;
+    padding: var(--espacio-4) var(--espacio-5) var(--espacio-4) 0;
+    vertical-align: middle;
+  }
+
+  .data-table__th {
+    font-weight: var(--peso-negrita);
+    line-height: var(--interlineado-compacto);
+    color: var(--color-texto-inverso);
+  }
+
+  .data-table__head--light .data-table__th {
+    color: var(--color-primario);
+  }
+
+  .data-table__th:first-child,
+  .data-table__cell:first-child {
+    padding-left: var(--espacio-6);
+  }
+
+  .data-table__th:last-child,
+  .data-table__cell:last-child {
+    padding-right: var(--espacio-6);
+  }
+
+  .data-table__th--end,
+  .data-table__cell--action {
+    text-align: right;
+  }
+
+  .data-table__cell[data-label]::before {
+    content: none;
+  }
+
+  .data-table__cell--action .btn {
+    white-space: nowrap;
+  }
+}
+
+/* ==========================================================================
+   12. Nota informativa
+   ========================================================================== */
+.info-note {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--espacio-3);
+  padding: var(--espacio-4);
+  color: var(--color-texto);
+  background-color: var(--color-superficie);
+  border: var(--grosor-borde) solid var(--color-borde);
+  border-radius: var(--radio-md);
+}
+
+.info-note__icon {
+  margin-top: 0.2em;
+  color: var(--color-primario);
+}
+
+.info-note__label {
+  font-weight: var(--peso-seminegrita);
+}
+
+/* ==========================================================================
+   13. Enlace de ayuda ("¿Necesitas ayuda? Contáctanos")
+   ========================================================================== */
+.help-link {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0 var(--espacio-2);
+  padding: var(--espacio-2);
+  text-align: center;
+}
+
+.help-link__icon {
+  color: var(--color-texto-suave);
+}
+
+.help-link__text {
+  font-weight: var(--peso-medio);
+  color: var(--color-texto-suave);
+}
+
+.help-link__action {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tactil-min);
+  font-weight: var(--peso-negrita);
 }
