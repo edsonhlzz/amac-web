@@ -1,18 +1,34 @@
 /* ==========================================================================
-   AMAC | Bolsa de Trabajo - variables.css
+   AMAC | Bolsa de Trabajo · variables.css
    Design tokens del prototipo de Figma, migrados desde styles.css.
 
    Reglas de este archivo:
-   - Solo declara variables; no estiliza ningún elemento.
+   · Solo declara variables; no estiliza ningún elemento.
+   · Mobile-first: los valores de :root son para celular (320 px en adelante)
+     y las media queries de abajo los ajustan para pantallas más grandes.
+   · Tamaños de texto y espacios en rem (1rem = 16 px por defecto del
+     navegador) para que todo escale con el zoom y la configuración del usuario.
+   · Los bordes y sombras se quedan en px: son detalles visuales, no texto.
 
+   Orden de carga en cada página:
+   variables.css → base.css → layout.css → componentes.css
+
+   Puntos de quiebre (las variables no funcionan dentro de @media, así que
+   se escriben a mano; en "em" para que respeten el zoom del navegador):
+     · Celular ............ base, sin media query        (320 px +)
+     · Tablet ............. @media (min-width: 48em)     (768 px +)
+     · Escritorio ......... @media (min-width: 64em)     (1024 px +)
+     · Escritorio amplio .. @media (min-width: 90em)     (1440 px +)
    ========================================================================== */
 
 :root {
   /* ------------------------------------------------------------------------
      1. COLORES
+     Contraste calculado con la fórmula WCAG 2.x. Mínimos: 4.5:1 para texto
+     y 3:1 para bordes de campos y para el anillo de foco.
      ------------------------------------------------------------------------ */
 
-  /* Marca y acciones */
+  /* Marca y acciones (decisión de diseño #3 de la Entrega 1) */
   --color-primario: #003366;             /* header, títulos, botones de consulta. Blanco encima 12.6:1 */
   --color-primario-oscuro: #002147;      /* hover / activo del primario */
   --color-accion: #C2410C;               /* Buscar, Postularme, Llamar, Registrarme. Blanco encima 5.2:1 */
@@ -48,7 +64,8 @@
   --color-borde-suave: #BFD7FF;          /* separadores dentro del panel azul */
   --color-borde-oscuro: rgb(250 250 250 / 0.15); /* separadores del menú móvil */
 
-  /* Etiquetas de estatus (una sola paleta para candidato y empresa). */
+  /* Etiquetas de estatus (una sola paleta para candidato y empresa).
+     Todas ≥ 6.3:1 entre texto y fondo. */
   --estatus-revision-texto: #9A3412;     /* "En revisión", "Abierta", etiqueta "Tiempo completo" */
   --estatus-revision-fondo: #FFEDD5;
   --estatus-exito-texto: #166534;        /* "Entrevista agendada", "Entrevistas" */
@@ -62,6 +79,8 @@
 
   /* ------------------------------------------------------------------------
      2. TIPOGRAFÍA
+     El root se queda en 100 % (respeta la configuración del usuario).
+     Ningún texto de lectura baja de 18 px; solo apoyos breves usan 16 px.
      ------------------------------------------------------------------------ */
   --fuente-base: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
@@ -86,7 +105,8 @@
   --interlineado-amplio: 1.65;     /* textos largos del detalle */
 
   /* ------------------------------------------------------------------------
-     3. ESPACIADOS
+     3. ESPACIADOS · escala de 4 px expresada en rem
+     El número indica múltiplos de 4 px: --espacio-4 = 16 px.
      ------------------------------------------------------------------------ */
   --espacio-1: 0.25rem;    /*  4 px */
   --espacio-2: 0.5rem;     /*  8 px */
@@ -99,47 +119,48 @@
   --espacio-10: 2.5rem;    /* 40 px */
   --espacio-12: 3rem;      /* 48 px */
   --espacio-16: 4rem;      /* 64 px */
-  --espacio-24: 6rem;      /* 96 px */
+  --espacio-24: 6rem;      /* 96 px · separación del menú en escritorio */
 
   /* ------------------------------------------------------------------------
      4. LAYOUT
      ------------------------------------------------------------------------ */
-  --ancho-pagina: 90rem;          /* 1440 px */
-  --ancho-contenido: 75.625rem;   /* 1210 px */
-  --ancho-formulario: 37.5rem;    /* 600 px  */
-  --margen-pagina: 1rem;          /* margen lateral */
+  --ancho-pagina: 90rem;          /* 1440 px · frame de escritorio en Figma */
+  --ancho-contenido: 75.625rem;   /* 1210 px · tablas, listado, detalle */
+  --ancho-formulario: 37.5rem;    /* 600 px · login y registro */
+  --margen-pagina: 1rem;          /* margen lateral; crece en las media queries */
 
-  --alto-encabezado: 5rem;        /* 80 px */
-  --ancho-logo: 12.5rem;          /* 200 px */
+  --alto-encabezado: 5rem;        /* 80 px → 96 px → 121 px */
+  --ancho-logo: 12.5rem;          /* 200 px; Figma usaba 301 px, que no cabe en 320 px
+                                     junto al botón de menú */
 
   /* ------------------------------------------------------------------------
      5. ÁREAS TÁCTILES Y TAMAÑOS DE CONTROLES
      ------------------------------------------------------------------------ */
-  --tactil-min: 2.75rem;          /* 44 px */
-  --alto-boton: 3rem;             /* 48 px */
-  --alto-campo: 3.25rem;          /* 52 px */
-  --alto-textarea: 9.625rem;      /* 154 px */
-  --tamano-casilla: 1.5rem;       /* 24 px */
+  --tactil-min: 2.75rem;          /* 44 px · mínimo de TODO botón o enlace */
+  --alto-boton: 3rem;             /* 48 px · botones normales y de tabla */
+  --alto-campo: 3.25rem;          /* 52 px · inputs y selects */
+  --alto-textarea: 9.625rem;      /* 154 px · experiencia laboral */
+  --tamano-casilla: 1.5rem;       /* 24 px · checkbox (Figma: 18 px, muy pequeño) */
   --tamano-icono: 1.25rem;        /* 20 px */
   --tamano-icono-lg: 1.5rem;      /* 24 px */
-  --tamano-fab: 4rem;             /* 64 px */
+  --tamano-fab: 4rem;             /* 64 px · botón flotante de llamar a AMAC */
   --separacion-tactil: 0.5rem;    /* espacio mínimo entre dos elementos tocables */
 
   /* ------------------------------------------------------------------------
      6. FORMA
      ------------------------------------------------------------------------ */
-  --radio-sm: 0.25rem;            /*  4 px */
-  --radio-md: 0.5rem;             /*  8 px */
-  --radio-lg: 0.75rem;            /* 12 px */
+  --radio-sm: 0.25rem;            /*  4 px · checkbox */
+  --radio-md: 0.5rem;             /*  8 px · botones, campos, cajas */
+  --radio-lg: 0.75rem;            /* 12 px · tarjetas, paneles, tablas */
   --radio-pildora: 999px;         /* etiquetas de estatus */
   --radio-circulo: 50%;           /* botón flotante */
 
-  --grosor-borde: 1px;            
+  --grosor-borde: 1px;            /* Figma usaba 0.8 px; se redondea para que se vea igual en todas las pantallas */
   --grosor-foco: 3px;
   --separacion-foco: 2px;
 
   /* ------------------------------------------------------------------------
-     7. SOMBRAS 
+     7. SOMBRAS (valores de Figma convertidos de drop-shadow a box-shadow)
      ------------------------------------------------------------------------ */
   --sombra-tarjeta:
     0 4px 2px rgb(0 0 0 / 0.25),
@@ -163,7 +184,7 @@
   --z-encabezado: 10;
   --z-menu: 20;
   --z-fab: 30;
-  --z-modal: 40;        
+  --z-modal: 40;          /* confirmación de postulación */
 }
 
 /* --------------------------------------------------------------------------
@@ -189,9 +210,9 @@
    -------------------------------------------------------------------------- */
 @media (min-width: 64em) {
   :root {
-    --margen-pagina: 2rem;              /* 32 px */
+    --margen-pagina: 2rem;              /* 32 px; el ancho máximo del contenido hace el resto */
     --alto-encabezado: 7.5625rem;       /* 121 px */
-    --ancho-logo: 29.4375rem;           /* 471 px */
+    --ancho-logo: 27.625rem;            /* 442 px: tamaño real del PNG exportado de Figma */
   }
 }
 
@@ -203,4 +224,50 @@
     --transicion: 0ms;
     --transicion-menu: 0ms;
   }
+}
+
+/* --------------------------------------------------------------------------
+   Modo de alto contraste (botón "Alto contraste" del pie de página).
+   js/main.js agrega data-contraste="alto" al <html>; también se activa solo
+   si el sistema operativo pide más contraste (prefers-contrast: more).
+   Fondos blancos, texto negro, bordes negros y sin sombras. Todo ≥ 7:1.
+   -------------------------------------------------------------------------- */
+:root[data-contraste="alto"] {
+  --color-primario: #001F3F;             /* 16.9:1 sobre blanco */
+  --color-primario-oscuro: #000000;
+  --color-accion: #9A3412;               /* 7.3:1 */
+  --color-accion-oscuro: #7C2D12;
+  --color-exito: #14532D;
+  --color-peligro: #7F1D1D;
+
+  --color-fondo: #FFFFFF;
+  --color-superficie: #FFFFFF;
+  --color-superficie-alterna: #FFFFFF;
+  --color-panel: #FFFFFF;
+  --color-panel-info: #FFFFFF;
+  --color-campo-select: #FFFFFF;
+  --color-subencabezado: #FFFFFF;
+  --color-aviso: #FFFFFF;
+
+  --color-texto-titulo: #000000;
+  --color-texto-fuerte: #000000;
+  --color-texto: #000000;
+  --color-texto-suave: #000000;
+  --color-texto-celda: #000000;
+  --color-texto-placeholder: #404040;    /* 10.4:1 */
+
+  --color-borde: #000000;
+  --color-borde-campo: #000000;
+  --color-borde-suave: #000000;
+
+  --estatus-revision-fondo: #FFFFFF;
+  --estatus-exito-fondo: #FFFFFF;
+  --estatus-error-fondo: #FFFFFF;
+
+  --color-foco: #9A3412;
+
+  --sombra-tarjeta: none;
+  --sombra-estadistica: none;
+  --sombra-tabla: none;
+  --sombra-boton-accion: none;
 }

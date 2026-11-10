@@ -17,6 +17,16 @@
    11. Tabla de datos ........... <TablaDatos />
    12. Nota informativa ......... <NotaInfo />
    13. Enlace de ayuda .......... <EnlaceAyuda />
+   14. Ventana de confirmación  <VentanaConfirmacion />
+   15. Formularios largos ....... <GrupoCampos /> <OpcionRadio /> <Desplegable />
+   16. Acciones de tabla ........ <AccionesTabla />
+   17. Título de sección de tabla <SeccionTabla />
+   14b. Colores forzados e impresión
+   18. Página de error .......... <PaginaError />
+   19. Tarjeta de candidato ..... <TarjetaCandidato />
+   20. Estado vacío ............. <EstadoVacio />
+   21. Variantes de confirmación  <VentanaConfirmacion tipo="..." />
+   22. Ajustes de alto contraste
    ========================================================================== */
 
 /* ==========================================================================
@@ -135,6 +145,7 @@
 .tag,
 .status {
   display: inline-flex;
+  border: 1px solid transparent;   /* se vuelve visible en colores forzados y alto contraste */
   align-items: center;
   justify-content: center;
   padding: var(--espacio-1) var(--espacio-3);
@@ -1018,4 +1029,592 @@
   align-items: center;
   min-height: var(--tactil-min);
   font-weight: var(--peso-negrita);
+}
+
+/* ==========================================================================
+   14. Ventana de confirmación (vacante.html) .......... <VentanaConfirmacion />
+   Con JavaScript se abre con dialog.showModal(): atrapa el foco, cierra con
+   Esc y oscurece el fondo. Sin JavaScript se muestra con :target (#confirmacion).
+   ========================================================================== */
+.modal {
+  width: min(100% - 2 * var(--margen-pagina), 32rem);
+  margin: auto;               /* el reset de base.css quita el centrado del navegador */
+  max-height: calc(100% - 2 * var(--espacio-4));
+  padding: 0;
+  color: var(--color-texto);
+  background-color: var(--color-superficie);
+  border: 0;
+  border-radius: var(--radio-lg);
+  box-shadow: 0 20px 40px rgb(0 0 0 / 0.35);
+}
+
+.modal::backdrop {
+  background-color: rgb(0 0 0 / 0.6);
+}
+
+/* Respaldo sin JavaScript */
+.modal:target {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: block;
+  height: fit-content;
+  margin: auto;
+  box-shadow: 0 0 0 100vmax rgb(0 0 0 / 0.6);
+}
+
+.modal:focus-visible {
+  outline: none;
+}
+
+.modal__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espacio-4);
+  padding: var(--espacio-8) var(--espacio-5);
+  text-align: center;
+}
+
+.modal__icon {
+  width: 4rem;
+  height: 4rem;
+  color: var(--color-exito);
+}
+
+.modal__title {
+  font-size: var(--texto-2xl);
+  color: var(--color-primario);
+}
+
+.modal__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-3);
+  width: 100%;
+  margin-top: var(--espacio-2);
+}
+
+@media (min-width: 48em) {
+  .modal__content {
+    padding: var(--espacio-10) var(--espacio-8);
+  }
+}
+
+/* ==========================================================================
+   15. Formularios largos (registro-candidato.html)
+       <GrupoCampos /> <OpcionRadio /> <Desplegable />
+   ========================================================================== */
+
+/* Campos en dos columnas desde tablet (Colonia + Código postal) */
+.field-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--espacio-5);
+}
+
+@media (min-width: 48em) {
+  .field-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .field--full {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Separación extra entre grupos de campos dentro de la tarjeta */
+.fieldset + .fieldset {
+  margin-top: var(--espacio-4);
+}
+
+/* Select dentro de un campo (Municipio); reutiliza la flecha de .filter__icon */
+.field__select {
+  display: block;
+  width: 100%;
+  min-height: var(--alto-campo);
+  padding: 0 var(--espacio-10) 0 var(--espacio-4);
+  color: var(--color-texto-fuerte);
+  background-color: var(--color-superficie);
+  border: var(--grosor-borde) solid var(--color-borde-campo);
+  border-radius: var(--radio-md);
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+/* Opciones de radio grandes: toda la caja es clicable (área ≥ 44 px) */
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2);
+}
+
+.choices > legend {
+  margin-bottom: var(--espacio-2);
+}
+
+.choice {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-3);
+  min-height: var(--alto-boton);
+  padding: var(--espacio-2) var(--espacio-4);
+  color: var(--color-texto-fuerte);
+  background-color: var(--color-superficie);
+  border: var(--grosor-borde) solid var(--color-borde-campo);
+  border-radius: var(--radio-md);
+}
+
+.choice:has(:checked) {
+  background-color: var(--color-panel);
+  border-color: var(--color-primario);
+  box-shadow: inset 0 0 0 1px var(--color-primario);
+}
+
+.choice__input {
+  flex-shrink: 0;
+  width: var(--tamano-casilla);
+  height: var(--tamano-casilla);
+  margin: 0;
+  accent-color: var(--color-primario);
+  cursor: pointer;
+}
+
+/* Aceptar términos + texto desplegable */
+.terms {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2);
+}
+
+.disclosure__summary {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tactil-min);
+  font-weight: var(--peso-seminegrita);
+  color: var(--color-primario);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+
+.disclosure__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2);
+  padding: var(--espacio-4) var(--espacio-4) var(--espacio-4) var(--espacio-8);
+  color: var(--color-texto);
+  list-style: disc;
+  background-color: var(--color-aviso);
+  border-radius: var(--radio-md);
+}
+
+/* ==========================================================================
+   16. Acciones y celdas de tabla (mis-solicitudes.html)
+   ========================================================================== */
+.table-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-4);
+}
+
+/* La primera celda de cada fila es <th scope="row">: se ve igual que las demás */
+.data-table__cell--primary {
+  font-weight: var(--peso-regular);
+  text-align: left;
+}
+
+.data-table__meta {
+  color: var(--color-texto-celda);
+}
+
+/* Varios botones en la misma celda (Ver detalle + Cancelar) */
+.data-table__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2);
+}
+
+@media (min-width: 48em) {
+  .data-table__actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+}
+
+/* ==========================================================================
+   17. Título de sección de tabla (empresa-vacantes.html)
+   ========================================================================== */
+.table-section__title {
+  font-size: var(--texto-2xl);
+  color: var(--color-primario);
+}
+
+/* ==========================================================================
+   14b. Colores forzados (Windows "Contraste alto")
+   Los fondos y sombras desaparecen en este modo; se reemplazan con colores
+   del sistema para que la casilla, la opción elegida y las viñetas se vean.
+   ========================================================================== */
+@media (forced-colors: active) {
+  .notice__checkbox:checked {
+    background-color: Highlight;
+    border-color: Highlight;
+  }
+
+  .notice__checkbox::before {
+    background-color: HighlightText;
+  }
+
+  .choice:has(:checked) {
+    outline: 3px solid Highlight;
+  }
+
+  .requirements__item::before {
+    background-color: CanvasText;
+  }
+
+  .field__control:focus-within {
+    outline-color: Highlight;
+  }
+}
+
+/* Impresión: sin sombras y sin cortar tarjetas a la mitad */
+@media print {
+  .job-card,
+  .job-detail,
+  .panel,
+  .auth-card,
+  .stat,
+  .info-note {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+
+  .search-panel,
+  .modal {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   18. Página de error 404 ............................. <PaginaError />
+   ========================================================================== */
+.error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espacio-4);
+  padding: var(--espacio-10) var(--espacio-5);
+  text-align: center;
+  background-color: var(--color-superficie);
+  border: var(--grosor-borde) solid var(--color-borde);
+  border-radius: var(--radio-lg);
+  box-shadow: var(--sombra-tarjeta);
+}
+
+.error-page__code {
+  font-size: 5rem;
+  font-weight: var(--peso-negrita);
+  line-height: 1;
+  color: var(--color-primario);
+}
+
+.error-page__title {
+  color: var(--color-primario);
+}
+
+.error-page__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-3);
+  width: 100%;
+  margin-top: var(--espacio-2);
+}
+
+@media (min-width: 48em) {
+  .error-page {
+    padding: var(--espacio-12);
+  }
+
+  .error-page__code {
+    font-size: 7rem;
+  }
+}
+
+/* ==========================================================================
+   19. Tarjeta de candidato (solicitudes-recibidas.html) .. <TarjetaCandidato />
+   ========================================================================== */
+.candidate-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-6);
+}
+
+.candidate-card {
+  overflow: hidden;
+  background-color: var(--color-superficie);
+  border: var(--grosor-borde) solid var(--color-borde);
+  border-radius: var(--radio-lg);
+  box-shadow: var(--sombra-tabla);
+}
+
+.candidate-card:focus-visible {
+  outline-offset: 4px;
+}
+
+.candidate-card__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--espacio-3) var(--espacio-4);
+  padding: var(--espacio-5);
+  background-color: var(--color-superficie-alterna);
+  border-bottom: var(--grosor-borde) solid var(--color-borde);
+}
+
+.candidate-card__name {
+  font-size: var(--texto-xl);
+}
+
+.candidate-card__job {
+  color: var(--color-texto-celda);
+}
+
+.candidate-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-5);
+  padding: var(--espacio-5);
+}
+
+.candidate-card__facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+  gap: var(--espacio-4);
+}
+
+.candidate-card__facts dt,
+.candidate-card__experience dt {
+  font-weight: var(--peso-seminegrita);
+  color: var(--color-texto-suave);
+}
+
+.candidate-card__facts dd,
+.candidate-card__experience dd {
+  margin: 0;
+  color: var(--color-texto-fuerte);
+}
+
+.candidate-card__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2);
+}
+
+.candidate-card__subtitle {
+  font-size: var(--texto-base);
+  color: var(--color-primario);
+}
+
+.candidate-card__experience {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2);
+}
+
+.candidate-card__experience div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--espacio-3);
+}
+
+.candidate-card__experience dt {
+  min-width: 5.5rem;
+}
+
+.candidate-card__footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-4);
+  padding: var(--espacio-5);
+  background-color: var(--color-superficie-alterna);
+  border-top: var(--grosor-borde) solid var(--color-borde);
+}
+
+.candidate-card__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-3);
+}
+
+.candidate-card__note {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-1);
+  padding: var(--espacio-4);
+  background-color: var(--color-superficie);
+  border: var(--grosor-borde) solid var(--color-borde);
+  border-radius: var(--radio-md);
+}
+
+.candidate-card__note-text {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--espacio-1) var(--espacio-4);
+  color: var(--color-texto-celda);
+}
+
+.candidate-card__note-text strong {
+  color: var(--color-texto-fuerte);
+}
+
+@media (min-width: 48em) {
+  .candidate-card__header,
+  .candidate-card__body,
+  .candidate-card__footer {
+    padding: var(--espacio-6);
+  }
+
+  .candidate-card__actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+/* Lista de etiquetas (habilidades) */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-2);
+}
+
+/* Botón de rechazo suave (Figma: fondo rojo claro, texto rojo) */
+.btn--danger-soft {
+  color: var(--estatus-error-texto);
+  background-color: var(--estatus-error-fondo);
+}
+
+.btn--danger-soft:hover {
+  color: var(--color-texto-inverso);
+  background-color: var(--color-peligro);
+}
+
+/* ==========================================================================
+   20. Estado vacío ...................................... <EstadoVacio />
+   ========================================================================== */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espacio-3);
+  padding: var(--espacio-10) var(--espacio-5);
+  text-align: center;
+  background-color: var(--color-superficie);
+  border: 2px dashed var(--color-borde-campo);
+  border-radius: var(--radio-lg);
+}
+
+.empty-state__icon {
+  width: 3rem;
+  height: 3rem;
+  color: var(--color-texto-suave);
+}
+
+.empty-state__title {
+  font-size: var(--texto-xl);
+  font-weight: var(--peso-negrita);
+  color: var(--color-texto-fuerte);
+}
+
+.empty-state__text {
+  max-width: 36rem;
+  color: var(--color-texto-suave);
+}
+
+/* ==========================================================================
+   21. Variantes de la ventana de confirmación (aceptar / entrevista / rechazar)
+   ========================================================================== */
+.modal__icon--accent {
+  color: var(--color-accion);
+}
+
+.modal__icon--danger {
+  color: var(--color-peligro);
+}
+
+.modal__summary {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-4);
+  width: 100%;
+  padding: var(--espacio-4);
+  text-align: left;
+  background-color: var(--color-superficie-alterna);
+  border: var(--grosor-borde) solid var(--color-borde);
+  border-radius: var(--radio-md);
+}
+
+.modal__summary .status {
+  margin-top: var(--espacio-1);
+  font-size: var(--texto-sm);
+}
+
+.modal__summary-name {
+  font-weight: var(--peso-negrita);
+  color: var(--color-texto-fuerte);
+}
+
+.modal__notice {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--espacio-2);
+  font-size: var(--texto-sm);
+  color: var(--color-texto-celda);
+  text-align: left;
+}
+
+.modal__notice .icon {
+  margin-top: 0.15em;
+}
+
+/* Iniciales del candidato */
+.avatar {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  font-weight: var(--peso-negrita);
+  color: var(--color-primario);
+  background-color: var(--color-subencabezado);
+  border-radius: var(--radio-circulo);
+}
+
+@media print {
+  .candidate-card {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+
+  .candidate-card__actions {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   22. Ajustes del modo de alto contraste
+   Las etiquetas pierden su fondo de color, así que se marcan con un borde.
+   ========================================================================== */
+[data-contraste="alto"] .tag,
+[data-contraste="alto"] .status {
+  border-color: currentColor;
+}
+
+[data-contraste="alto"] .btn--outline:hover,
+[data-contraste="alto"] .btn:hover {
+  text-decoration: underline;
 }

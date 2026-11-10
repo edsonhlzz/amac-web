@@ -1,145 +1,234 @@
 /* ==========================================================================
    AMAC | Bolsa de Trabajo · base.css
-   Reset, estilos de elementos HTML,
-   foco visible y clases utilitarias de accesibilidad.
+   Reset, estilos de elementos HTML (body, títulos, enlaces, formularios,
+   tablas), foco visible y utilidades de accesibilidad.
+   Aquí NO van clases de componentes: solo elementos y utilidades.
    ========================================================================== */
 
-
+/* --------------------------------------------------------------------------
+   1. Reset
+   -------------------------------------------------------------------------- */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
+* {
+  margin: 0;
+}
+
 html {
-  font-size: 100%;
   -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* Al saltar a un ancla (#principal), deja aire arriba del destino */
+  scroll-padding-top: var(--espacio-4);
 }
 
 body {
-  margin: 0;
   min-height: 100vh;
   font-family: var(--fuente-base);
-  font-size: var(--texto-base);
+  font-size: var(--texto-base);            /* 18 px */
   font-weight: var(--peso-regular);
   line-height: var(--interlineado-base);
   color: var(--color-texto);
   background-color: var(--color-fondo);
-  overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  margin: 0;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: var(--color-texto-titulo);
-  font-weight: var(--peso-negrita);
-  line-height: var(--interlineado-titulos);
-}
-
-h1 {
-  font-size: var(--texto-3xl);
-}
-
-h2 {
-  font-size: var(--texto-2xl);
-}
-
-h3 {
-  font-size: var(--texto-xl);
+img,
+svg,
+picture {
+  display: block;
+  max-width: 100%;
 }
 
 img {
-  display: block;
-  max-width: 100%;
   height: auto;
 }
 
+/* Las listas con clase son componentes: se les quita la viñeta.
+   Las listas sin clase (texto normal) conservan su estilo. */
+ul[class],
+ol[class] {
+  padding: 0;
+  list-style: none;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. Tipografía
+   -------------------------------------------------------------------------- */
+h1,
+h2,
+h3,
+h4 {
+  font-weight: var(--peso-negrita);
+  line-height: var(--interlineado-titulos);
+  color: var(--color-texto-fuerte);
+  overflow-wrap: break-word;   /* palabras largas no rompen el layout en 320 px */
+}
+
+h1 { font-size: var(--texto-3xl); }
+h2 { font-size: var(--texto-2xl); }
+h3 { font-size: var(--texto-xl); }
+
+p,
+li,
+dd,
+td,
+th {
+  overflow-wrap: break-word;
+}
+
+strong,
+b {
+  font-weight: var(--peso-negrita);
+}
+
+small {
+  font-size: var(--texto-sm);
+}
+
+/* --------------------------------------------------------------------------
+   3. Enlaces
+   Subrayados por defecto: el color solo no basta para distinguirlos
+   (WCAG 1.4.1). Los componentes que parecen botón quitan el subrayado.
+   -------------------------------------------------------------------------- */
 a {
   color: var(--color-primario);
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
   text-underline-offset: 0.2em;
 }
 
+a:hover {
+  text-decoration-thickness: 0.15em;
+}
+
+/* --------------------------------------------------------------------------
+   4. Formularios
+   -------------------------------------------------------------------------- */
 button,
 input,
 select,
 textarea {
   font: inherit;
+  color: inherit;
 }
 
-button,
-input[type="button"],
-input[type="submit"],
-input[type="reset"] {
-  min-height: var(--tactil-min);
+button {
   cursor: pointer;
 }
 
 button:disabled,
-input:disabled {
+[aria-disabled="true"] {
   cursor: not-allowed;
 }
 
-input::placeholder,
-textarea::placeholder {
-  color: var(--color-texto-placeholder);
-}
-
-table {
-  border-collapse: collapse;
+label {
+  cursor: pointer;
 }
 
 fieldset {
-  min-width: 0;
+  min-width: 0;          /* evita desbordes de fieldset en celular */
+  padding: 0;
+  border: 0;
 }
 
+legend {
+  padding: 0;
+}
+
+textarea {
+  resize: vertical;
+}
+
+::placeholder {
+  color: var(--color-texto-placeholder);
+  opacity: 1;            /* Firefox lo aclaraba */
+}
+
+/* --------------------------------------------------------------------------
+   5. Tablas
+   -------------------------------------------------------------------------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+}
+
+/* --------------------------------------------------------------------------
+   6. Foco visible (navegación con teclado)
+   Nunca se elimina el outline sin reemplazarlo.
+   -------------------------------------------------------------------------- */
 :focus-visible {
   outline: var(--grosor-foco) solid var(--color-foco);
   outline-offset: var(--separacion-foco);
 }
 
-header :focus-visible {
-  outline-color: var(--color-foco-sobre-oscuro);
+/* El <main> recibe foco al usar "Saltar al contenido"; no necesita anillo */
+main:focus {
+  outline: none;
 }
 
-.saltar-contenido {
-  position: fixed;
-  top: -10rem;
-  left: var(--espacio-4);
+/* --------------------------------------------------------------------------
+   7. Utilidades de accesibilidad
+   -------------------------------------------------------------------------- */
+
+/* Oculta visualmente pero sigue disponible para lectores de pantalla */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* "Saltar al contenido": invisible hasta que recibe foco con Tab */
+.skip-link {
+  position: absolute;
+  top: var(--espacio-2);
+  left: var(--espacio-2);
   z-index: var(--z-modal);
-  padding: var(--espacio-3) var(--espacio-4);
-  color: var(--color-texto-inverso);
-  background-color: var(--color-primario);
-  border-radius: var(--radio-md);
-  font-size: var(--texto-base);
-  font-weight: var(--peso-seminegrita);
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tactil-min);
+  padding: var(--espacio-2) var(--espacio-4);
+  font-weight: var(--peso-negrita);
+  color: var(--color-primario);
   text-decoration: none;
+  background-color: var(--color-superficie);
+  border-radius: var(--radio-md);
+  transform: translateY(-200%);
+  transition: transform var(--transicion);
 }
 
-.saltar-contenido:focus,
-.saltar-contenido:focus-visible {
-  top: var(--espacio-4);
-  outline-color: var(--color-foco);
+.skip-link:focus {
+  transform: translateY(0);
 }
 
+/* --------------------------------------------------------------------------
+   8. Movimiento reducido
+   -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
-    scroll-behavior: auto !important;
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

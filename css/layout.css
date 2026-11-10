@@ -1,14 +1,19 @@
-/* AMAC | Bolsa de Trabajo - layout.css
-   Estructura general: contenedores, header, menú, footer y botón de ayuda.
-   Está hecho mobile-first, o sea que lo base es para celular y las media
-   queries agregan cambios en pantallas más grandes.
+/* ==========================================================================
+   AMAC | Bolsa de Trabajo · layout.css
+   Estructura de la página: contenedores, encabezado y navegación, pie de
+   página y botón flotante de ayuda. Mobile-first: los estilos base son para
+   celular y las media queries (min-width) agregan cambios.
 
-   Puntos de quiebre:
-   48em (768px)  tablet
-   64em (1024px) escritorio
-   80em (1280px) el menú ya no es hamburguesa */
+   Puntos de quiebre usados aquí:
+     48em (768 px)  · tablet
+     64em (1024 px) · escritorio
+     80em (1280 px) · el menú deja de ser hamburguesa (con el logo de 471 px
+                      y el menú de Figma no cabe todo antes de este ancho)
+   ========================================================================== */
 
-/* Estructura general (el footer siempre queda abajo) */
+/* --------------------------------------------------------------------------
+   1. Estructura general: el pie siempre queda al fondo
+   -------------------------------------------------------------------------- */
 body {
   display: flex;
   flex-direction: column;
@@ -18,7 +23,10 @@ body {
   flex: 1 0 auto;
 }
 
-/* Contenedores */
+/* --------------------------------------------------------------------------
+   2. Contenedores
+   width: min(...) evita scroll horizontal en cualquier ancho y con zoom.
+   -------------------------------------------------------------------------- */
 .page {
   display: flex;
   flex-direction: column;
@@ -26,11 +34,11 @@ body {
   width: min(100% - 2 * var(--margen-pagina), var(--ancho-contenido));
   margin-inline: auto;
   padding-top: var(--espacio-8);
-  /* espacio abajo para que el botón de ayuda no tape el contenido */
+  /* Espacio extra al final para que el botón flotante no tape lo último */
   padding-bottom: calc(var(--tamano-fab) + var(--espacio-10));
 }
 
-/* Para login y registro */
+/* Login y registro: columna angosta centrada */
 .page--narrow {
   width: min(100% - 2 * var(--margen-pagina), var(--ancho-formulario));
 }
@@ -52,7 +60,9 @@ body {
   }
 }
 
-/* Título de cada página */
+/* --------------------------------------------------------------------------
+   3. Encabezado de página (h1 + subtítulo)
+   -------------------------------------------------------------------------- */
 .page-intro {
   display: flex;
   flex-direction: column;
@@ -68,7 +78,9 @@ body {
   color: var(--color-texto);
 }
 
-/* Header */
+/* --------------------------------------------------------------------------
+   4. Encabezado del sitio
+   -------------------------------------------------------------------------- */
 .site-header {
   position: relative;
   z-index: var(--z-encabezado);
@@ -85,7 +97,7 @@ body {
   margin-inline: auto;
 }
 
-/* En el fondo azul el foco naranja no se ve, por eso uno claro */
+/* Sobre el azul marino el anillo naranja no se ve: se usa uno claro */
 .site-header :focus-visible,
 .site-footer :focus-visible {
   outline-color: var(--color-foco-sobre-oscuro);
@@ -103,7 +115,7 @@ body {
   width: var(--ancho-logo);
 }
 
-/* Botón del menú (hamburguesa) */
+/* Botón de menú (hamburguesa) */
 .site-header__toggle {
   display: flex;
   flex-direction: column;
@@ -140,17 +152,19 @@ body {
   transform: translateY(calc(-0.375rem - 3px)) rotate(-45deg);
 }
 
-/* Sin JavaScript no sirve el botón, así que el menú se deja abierto */
+/* Sin JavaScript no hay botón de menú: el menú se muestra siempre abierto */
 html:not(.js) .site-header__toggle {
   display: none;
 }
 
-/* Navegación (en celular es una lista vertical debajo del header) */
+/* --------------------------------------------------------------------------
+   5. Navegación principal (celular: lista vertical bajo el encabezado)
+   -------------------------------------------------------------------------- */
 .site-nav {
   background-color: var(--color-primario);
 }
 
-/* Con JavaScript el menú se abre encima del contenido */
+/* Con JavaScript, el menú móvil se despliega encima del contenido */
 .js .site-nav {
   position: absolute;
   top: 100%;
@@ -165,7 +179,7 @@ html:not(.js) .site-header__toggle {
   display: block;
 }
 
-/* Sin JavaScript el menú queda debajo del logo */
+/* Sin JavaScript, el menú queda debajo del logo, dentro del encabezado */
 html:not(.js) .site-header__inner {
   flex-wrap: wrap;
 }
@@ -198,11 +212,11 @@ html:not(.js) .site-nav {
   text-decoration: none;
   background: none;
   border: 0;
-  list-style: none; /* quita el triángulo del summary en Firefox */
+  list-style: none;            /* quita el triángulo del <summary> en Firefox */
 }
 
 .site-nav__link::-webkit-details-marker {
-  display: none; /* lo mismo para Safari y Chrome */
+  display: none;               /* y en Safari / Chrome */
 }
 
 .site-nav__link:hover,
@@ -212,7 +226,7 @@ html:not(.js) .site-nav {
   text-underline-offset: 0.3em;
 }
 
-/* Submenú de Registro (usa details, así funciona sin JavaScript) */
+/* Submenú "Registro" (<details>, funciona sin JavaScript) */
 .site-nav__submenu[open] .site-nav__chevron {
   transform: rotate(180deg);
 }
@@ -240,7 +254,9 @@ html:not(.js) .site-nav {
   text-decoration: underline;
 }
 
-/* Navegación en escritorio (desde 1280px) */
+/* --------------------------------------------------------------------------
+   6. Navegación en escritorio (80em / 1280 px en adelante)
+   -------------------------------------------------------------------------- */
 @media (min-width: 80em) {
   .site-header__toggle,
   .js .site-header__toggle {
@@ -279,7 +295,7 @@ html:not(.js) .site-nav {
     white-space: nowrap;
   }
 
-  /* El submenú sale como una tarjeta flotante */
+  /* El submenú se abre como tarjeta flotante */
   .site-nav__sublist {
     position: absolute;
     top: calc(100% + var(--espacio-3));
@@ -298,11 +314,13 @@ html:not(.js) .site-nav {
 
 @media (min-width: 90em) {
   .site-nav__list {
-    gap: var(--espacio-24); /* 96px, como en Figma */
+    gap: var(--espacio-24);    /* 96 px, como en Figma */
   }
 }
 
-/* Footer */
+/* --------------------------------------------------------------------------
+   7. Pie de página
+   -------------------------------------------------------------------------- */
 .site-footer {
   flex-shrink: 0;
   color: var(--color-texto-inverso);
@@ -340,7 +358,7 @@ html:not(.js) .site-nav {
 }
 
 .site-footer__contact {
-  font-style: normal; /* address sale en cursiva por defecto */
+  font-style: normal;          /* <address> viene en cursiva por defecto */
 }
 
 .site-footer__legal {
@@ -351,7 +369,7 @@ html:not(.js) .site-nav {
 
 @media (min-width: 48em) {
   .site-footer__inner {
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .site-footer__legal {
@@ -359,8 +377,16 @@ html:not(.js) .site-nav {
   }
 }
 
-/* Botón flotante de ayuda / llamar a AMAC (RF-052)
-   Queda fijo en la esquina para que se vea en todas las páginas */
+@media (min-width: 64em) {
+  .site-footer__inner {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   8. Botón flotante de ayuda / llamar a AMAC (RF-052)
+   Fijo en la esquina para que esté visible en todas las páginas.
+   -------------------------------------------------------------------------- */
 .help-fab {
   position: fixed;
   right: max(var(--margen-pagina), env(safe-area-inset-right));
@@ -397,4 +423,77 @@ html:not(.js) .site-nav {
     right: var(--espacio-8);
     bottom: var(--espacio-8);
   }
+}
+
+/* --------------------------------------------------------------------------
+   9. Modo de colores forzados (Windows "Contraste alto")
+   El sistema reemplaza los colores; los elementos que solo usan fondo
+   (las barras del menú) se volverían invisibles sin esto.
+   -------------------------------------------------------------------------- */
+@media (forced-colors: active) {
+  .site-header__toggle-bar {
+    background-color: CanvasText;
+  }
+
+  .help-fab {
+    border: 2px solid ButtonText;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   10. Impresión
+   Útil para que el candidato imprima el detalle de una vacante o sus
+   solicitudes: se quita la navegación y se conserva el contenido.
+   -------------------------------------------------------------------------- */
+@media print {
+  .skip-link,
+  .site-header__toggle,
+  .site-nav,
+  .help,
+  .site-footer nav,
+  .back-link {
+    display: none !important;
+  }
+
+  body {
+    color: #000;
+    background: #fff;
+  }
+
+  /* El logo es blanco: se imprime con su fondo azul */
+  .site-header,
+  .site-footer {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 100%;
+    padding-block: var(--espacio-6);
+  }
+
+  .site-footer__inner {
+    padding-block: var(--espacio-4);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   11. Botón de alto contraste (pie de página)
+   -------------------------------------------------------------------------- */
+.contrast-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espacio-2);
+  min-height: var(--tactil-min);
+  padding: var(--espacio-2) var(--espacio-4);
+  font-weight: var(--peso-seminegrita);
+  color: var(--color-texto-inverso);
+  background: transparent;
+  border: 2px solid var(--color-texto-inverso);
+  border-radius: var(--radio-md);
+}
+
+.contrast-toggle[aria-pressed="true"] {
+  color: var(--color-primario);
+  background-color: var(--color-texto-inverso);
 }
