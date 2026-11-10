@@ -1,6 +1,243 @@
 /* ==========================================================================
    AMAC | Bolsa de Trabajo - componentes.css
    Piezas reutilizables:
-   Botones, etiquetas de estatus, estadísticas, campos de formulario,
-   tarjetas de vacante, tablas, avisos.
+   Botones, etiquetas de estatus, estadísticas, campos de formulario y avisos.
+
+   Reglas de este archivo:
+   - Usa exclusivamente las variables de variables.css.
+   - Todo se construye mobile-first.
+
    ========================================================================== */
+
+/* ------------------------------------------------------------------------
+   1. BOTONES
+   ------------------------------------------------------------------------ */
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--alto-boton);
+  padding: var(--espacio-2) var(--espacio-4);
+  font-family: var(--fuente-base);
+  font-size: var(--texto-base);
+  font-weight: var(--peso-seminegrita);
+  line-height: var(--interlineado-compacto);
+  text-align: center;
+  text-decoration: none;
+  border: var(--grosor-borde) solid transparent;
+  border-radius: var(--radio-md);
+  cursor: pointer;
+  transition: background-color var(--transicion), box-shadow var(--transicion);
+  gap: var(--espacio-2);
+}
+
+.boton:focus-visible {
+  outline: var(--grosor-foco) solid var(--color-foco);
+  outline-offset: var(--separacion-foco);
+}
+
+.boton--primario {
+  background-color: var(--color-primario);
+  color: var(--color-texto-inverso);
+  box-shadow: var(--sombra-boton-primario);
+}
+
+.boton--primario:hover {
+  background-color: var(--color-primario-oscuro);
+}
+
+.boton--accion {
+  background-color: var(--color-accion);
+  color: var(--color-texto-inverso);
+  box-shadow: var(--sombra-boton-accion);
+}
+
+.boton--accion:hover {
+  background-color: var(--color-accion-oscuro);
+}
+
+.boton--secundario {
+  background-color: transparent;
+  color: var(--color-primario);
+  border-color: var(--color-primario);
+}
+
+.boton--secundario:hover {
+  background-color: var(--color-panel);
+}
+
+.boton:disabled,
+.boton--deshabilitado {
+  background-color: var(--color-deshabilitado);
+  color: var(--color-texto-suave);
+  border-color: transparent;
+  box-shadow: none;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------------------
+   2. ETIQUETAS DE ESTATUS
+   ------------------------------------------------------------------------ */
+
+.etiqueta {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--espacio-1) var(--espacio-3);
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-medio);
+  line-height: var(--interlineado-compacto);
+  border-radius: var(--radio-pildora);
+  white-space: nowrap;
+}
+
+.etiqueta--revision {
+  background-color: var(--estatus-revision-fondo);
+  color: var(--estatus-revision-texto);
+}
+
+.etiqueta--exito {
+  background-color: var(--estatus-exito-fondo);
+  color: var(--estatus-exito-texto);
+}
+
+.etiqueta--error {
+  background-color: var(--estatus-error-fondo);
+  color: var(--estatus-error-texto);
+}
+
+/* ------------------------------------------------------------------------
+   3. ESTADÍSTICAS
+   ------------------------------------------------------------------------ */
+
+.estadisticas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--espacio-4);
+  margin-block-end: var(--espacio-8);
+}
+
+.estadistica {
+  background-color: var(--color-superficie);
+  padding: var(--espacio-5);
+  border-radius: var(--radio-md);
+  box-shadow: var(--sombra-estadistica);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2);
+}
+
+.estadistica__valor {
+  font-size: var(--texto-3xl);
+  font-weight: var(--peso-negrita);
+  color: var(--color-primario);
+  line-height: var(--interlineado-titulos);
+}
+
+.estadistica__etiqueta {
+  font-size: var(--texto-base);
+  color: var(--color-texto-suave);
+  margin: 0;
+}
+
+/* ------------------------------------------------------------------------
+   4. CAMPOS DE FORMULARIO
+   ------------------------------------------------------------------------ */
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2);
+  margin-block-end: var(--espacio-5);
+}
+
+.campo__label {
+  font-size: var(--texto-base);
+  font-weight: var(--peso-seminegrita);
+  color: var(--color-texto-fuerte);
+}
+
+.campo__control {
+  width: 100%;
+  min-height: var(--alto-campo);
+  padding: var(--espacio-2) var(--espacio-3);
+  font-family: var(--fuente-base);
+  font-size: var(--texto-base);
+  color: var(--color-texto);
+  background-color: var(--color-superficie);
+  border: var(--grosor-borde) solid var(--color-borde-campo);
+  border-radius: var(--radio-md);
+  transition: border-color var(--transicion), box-shadow var(--transicion);
+}
+
+.campo__control::placeholder {
+  color: var(--color-texto-placeholder);
+}
+
+.campo__control:focus-visible {
+  outline: var(--grosor-foco) solid var(--color-foco);
+  outline-offset: var(--separacion-foco);
+  border-color: var(--color-primario);
+}
+
+.campo__control:disabled {
+  background-color: var(--color-fondo);
+  color: var(--color-texto-suave);
+  cursor: not-allowed;
+}
+
+textarea.campo__control {
+  min-height: var(--alto-textarea);
+  resize: vertical;
+}
+
+.campo__ayuda {
+  font-size: var(--texto-sm);
+  color: var(--color-texto-suave);
+  margin: 0;
+}
+
+/* ------------------------------------------------------------------------
+   5. AVISOS Y ALERTAS
+   ------------------------------------------------------------------------ */
+
+.aviso {
+  display: flex;
+  gap: var(--espacio-3);
+  padding: var(--espacio-4);
+  border-radius: var(--radio-md);
+  margin-block-end: var(--espacio-6);
+  font-size: var(--texto-base);
+  line-height: var(--interlineado-base);
+  border-left: 4px solid transparent;
+}
+
+.aviso__titulo {
+  font-weight: var(--peso-negrita);
+  display: block;
+  margin-block-end: var(--espacio-1);
+}
+
+.aviso--info {
+  background-color: var(--color-panel);
+  border-left-color: var(--color-primario);
+  color: var(--color-texto);
+}
+
+.aviso--info .aviso__titulo {
+  color: var(--color-primario);
+}
+
+.aviso--exito {
+  background-color: var(--estatus-exito-fondo);
+  border-left-color: var(--color-exito);
+  color: var(--estatus-exito-texto);
+}
+
+.aviso--error {
+  background-color: var(--estatus-error-fondo);
+  border-left-color: var(--color-peligro);
+  color: var(--estatus-error-texto);
+}
